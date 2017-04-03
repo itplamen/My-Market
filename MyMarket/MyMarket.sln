@@ -3,8 +3,33 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D0487FFF-C778-416B-9D69-A78F3C9D8E31}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{A1D7CBF2-F0EB-4813-95DB-922AD0578E64}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{90F66DD6-4A47-4E29-A49A-0D25DEB19F00}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{292150DA-FD6F-4146-BF28-014F34A4D675}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Auth", "Auth", "{42108CAD-1468-44A0-9965-E31E94094C39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMarket.Web", "Web\MyMarket.Web\MyMarket.Web.csproj", "{603B371D-20B4-4D9E-A2C8-1930A0EBB5C7}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{603B371D-20B4-4D9E-A2C8-1930A0EBB5C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{603B371D-20B4-4D9E-A2C8-1930A0EBB5C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{603B371D-20B4-4D9E-A2C8-1930A0EBB5C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{603B371D-20B4-4D9E-A2C8-1930A0EBB5C7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{603B371D-20B4-4D9E-A2C8-1930A0EBB5C7} = {A1D7CBF2-F0EB-4813-95DB-922AD0578E64}
 	EndGlobalSection
 EndGlobal
