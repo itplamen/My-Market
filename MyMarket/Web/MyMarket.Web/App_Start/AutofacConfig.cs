@@ -41,11 +41,9 @@
 
         private static void RegisterServices(ContainerBuilder builder)
         {
-            builder.Register(x => new ApplicationDbContext())
-                .As<DbContext>()
+            builder.Register(x => new MyMarketDbContext())
+                .As<IMyMarketDbContext>()
                 .InstancePerRequest();
-
-
 
             builder.RegisterGeneric(typeof(DbRepository<>))
                 .As(typeof(IDbRepository<>))

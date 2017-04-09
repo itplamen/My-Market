@@ -9,8 +9,8 @@
     {
         public static void Initialize()
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
-            ApplicationDbContext.Create().Database.Initialize(true);
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<MyMarketDbContext, Configuration>());
+            MyMarketDbContext.Create().Database.Initialize(true);
         }
     }
 }

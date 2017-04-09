@@ -9,16 +9,18 @@
     using Common.Models;
     using Models;
 
-    public class ApplicationDbContext : IdentityDbContext<User>
+    public class MyMarketDbContext : IdentityDbContext<User>, IMyMarketDbContext
     {
-        public ApplicationDbContext()
+        public MyMarketDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
 
-        public static ApplicationDbContext Create()
+        public IDbSet<Category> Categories { get; set; }
+
+        public static MyMarketDbContext Create()
         {
-            return new ApplicationDbContext();
+            return new MyMarketDbContext();
         }
 
         public override int SaveChanges()
