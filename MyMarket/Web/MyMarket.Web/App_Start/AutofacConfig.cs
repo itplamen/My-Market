@@ -1,10 +1,13 @@
 ﻿namespace MyMarket.Web.App_Start
 {
+    using System.Data.Entity;
     using System.Reflection;
     using System.Web.Mvc;
 
     using Autofac;
     using Autofac.Integration.Mvc;
+    using Data;
+    using Data.Common;
 
     public static class AutofacConfig
     {
@@ -38,22 +41,13 @@
 
         private static void RegisterServices(ContainerBuilder builder)
         {
-            //builder.Register(x => new ApplicationDbContext())
-            //    .As<DbContext>()
-            //    .InstancePerRequest();
-            //builder.Register(x => new HttpCacheService())
-            //    .As<ICacheService>()
-            //    .InstancePerRequest();
-            //builder.Register(x => new IdentifierProvider())
-            //    .As<IIdentifierProvider>()
-            //    .InstancePerRequest();
+            builder.Register(x => new ApplicationDbContext())
+                .As<DbContext>()
+                .InstancePerRequest();
 
-            //builder.RegisterGeneric(typeof(DbRepository<>))
-            //    .As(typeof(IDbRepository<>))
-            //    .InstancePerRequest();
-
-            //builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-            //    .AssignableTo<BaseController>().PropertiesAutowired();
+            builder.RegisterGeneric(typeof(DbRepository<>))
+                .As(typeof(IDbRepository<>))
+                .InstancePerRequest();
         }
     }
 }
