@@ -65,6 +65,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MyMarket.Data.Common\MyMarket.Data.Common.csproj">
+      <Project>{1E420791-E729-454D-8CD0-51018841C74F}</Project>
+      <Name>MyMarket.Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MyMarket.Data.Models\MyMarket.Data.Models.csproj">
       <Project>{45C7F315-2001-4745-BFFE-E7EED16342E1}</Project>
       <Name>MyMarket.Data.Models</Name>
