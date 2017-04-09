@@ -316,6 +316,10 @@
       <Project>{D07FCB5C-088D-478A-BE83-3CF7A8F633A7}</Project>
       <Name>MyMarket.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MyMarket.Web.Infrastructure\MyMarket.Web.Infrastructure.csproj">
+      <Project>{4981CC6A-2F01-43F9-9CD5-2AC1F6467347}</Project>
+      <Name>MyMarket.Web.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
