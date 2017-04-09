@@ -45,6 +45,8 @@
                 .As<DbContext>()
                 .InstancePerRequest();
 
+
+
             builder.RegisterGeneric(typeof(DbRepository<>))
                 .As(typeof(IDbRepository<>))
                 .InstancePerRequest();
