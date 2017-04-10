@@ -3,9 +3,10 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
+    using Common.Models;
     using MyMarket.Common;
-
-    public class City
+    
+    public class City : BaseModel<int>
     {
         [Required]
         [Index(IsUnique = true)]

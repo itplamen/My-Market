@@ -20,6 +20,16 @@ namespace MyMarket.Data.Migrations
                 context.Categories.AddOrUpdate(seedData.Categories.ToArray());
             }
 
+            if (!context.Countries.Any())
+            {
+                context.Countries.AddOrUpdate(seedData.Countries.ToArray());
+            }
+
+            if (!context.Cities.Any())
+            {
+                context.Cities.AddOrUpdate(seedData.Cities.ToArray());
+            }
+
             context.SaveChanges();
         }
     }
