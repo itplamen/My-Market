@@ -29,6 +29,11 @@ namespace MyMarket.Data.Migrations
                 context.Categories.AddOrUpdate(seedData.Categories.ToArray());
             }
 
+            if (!context.Ads.Any())
+            {
+                context.Ads.AddOrUpdate(seedData.Ads.ToArray());
+            }
+
             if (!context.Countries.Any())
             {
                 context.Countries.AddOrUpdate(seedData.Countries.ToArray());

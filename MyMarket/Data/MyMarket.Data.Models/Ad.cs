@@ -21,7 +21,6 @@
 
         [Required]
         [MinLength(ValidationConstants.CONTENT_MIN_LENGTH)]
-        [MaxLength(ValidationConstants.CONTENT_MAX_LENGHT)]
         public string Description { get; set; }
 
         public byte[] Picture { get; set; }

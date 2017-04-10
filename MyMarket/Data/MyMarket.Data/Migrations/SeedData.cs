@@ -15,6 +15,9 @@
             this.Categories = new List<Category>();
             this.SeedCategories();
 
+            this.Ads = new List<Ad>();
+            this.SeedAds();
+
             this.Countries = new List<Country>();
             this.SeedCountries();
 
@@ -23,6 +26,8 @@
         }
 
         public List<Category> Categories { get; set; }
+
+        public List<Ad> Ads { get; set; }
 
         public List<City> Cities { get; set; }
 
@@ -43,6 +48,27 @@
             this.Categories.Add(new Category() { Name = "Jobs" });
             this.Categories.Add(new Category() { Name = "Business & Industrial" });
             this.Categories.Add(new Category() { Name = "Services" });
+        }
+
+        private void SeedAds()
+        {
+            for (int i = 1; i <= 10; i++)
+            {
+                this.Ads.Add(new Ad()
+                {
+                    Title = "Ad Title Test " + i,
+                    Description = "<p>Balkan Air launched a new route from Sofia (SOF) to Budapest (BUD), with a three times weekly " +
+                    "service beginning in October, as part of its winter 2017 schedule which will go on sale soon.</p>" +
+                    "<p>Balkan Air celebrated its new Sofia - Budapest route by releasing seats for sale at prices starting from " +
+                    "just &#8364;9.99 for travel in February and March. These low fare seats are available for booking until " +
+                    "midnight Monday, 30 January.</p>" +
+                    "<p><strong>Our Director of Air Service Development, Paul Winfield said:</strong></p>" +
+                    "<p><i>“It's great to be able to celebrate our first new route announcement of the year so early into 2017 and " +
+                    "for another airport in Italy to become linked with Liverpool later this year.</i></p>",
+                    Price = i,
+                    Category = this.Categories[0]
+                });
+            }
         }
 
         private void SeedCountries()

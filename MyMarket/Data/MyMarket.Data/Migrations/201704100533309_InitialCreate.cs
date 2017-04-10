@@ -13,7 +13,7 @@ namespace MyMarket.Data.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Title = c.String(nullable: false, maxLength: 50),
-                        Description = c.String(nullable: false, maxLength: 250),
+                        Description = c.String(nullable: false),
                         Picture = c.Binary(),
                         Views = c.Int(nullable: false),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
