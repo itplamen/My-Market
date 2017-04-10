@@ -14,6 +14,7 @@
             this.Visits = new HashSet<Visit>();
             this.Likes = new HashSet<Like>();
             this.Comments = new HashSet<Comment>();
+            this.Flags = new HashSet<Flag>();
         }
 
         [Required]
@@ -42,5 +43,7 @@
         public virtual ICollection<Like> Likes { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
+
+        public virtual ICollection<Flag> Flags { get; set; }
     }
 }

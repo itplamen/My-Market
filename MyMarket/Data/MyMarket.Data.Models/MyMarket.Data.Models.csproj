@@ -62,6 +62,7 @@
     <Compile Include="City.cs" />
     <Compile Include="Comment.cs" />
     <Compile Include="Country.cs" />
+    <Compile Include="Flag.cs" />
     <Compile Include="Gender.cs" />
     <Compile Include="Like.cs" />
     <Compile Include="User.cs" />

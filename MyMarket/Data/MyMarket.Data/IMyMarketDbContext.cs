@@ -18,6 +18,8 @@
 
         IDbSet<Country> Countries { get; set; }
 
+        IDbSet<Flag> Flags { get; set; }
+
         IDbSet<Like> Likes { get; set; }
 
         IDbSet<Visit> Visits { get; set; }

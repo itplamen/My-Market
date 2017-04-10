@@ -112,6 +112,22 @@ namespace MyMarket.Data.Migrations
                 .Index(t => t.UserId);
             
             CreateTable(
+                "dbo.Flags",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        CreatedOn = c.DateTime(nullable: false),
+                        ModifiedOn = c.DateTime(),
+                        AdId = c.Int(nullable: false),
+                        UserId = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Ads", t => t.AdId, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.AdId)
+                .Index(t => t.UserId);
+            
+            CreateTable(
                 "dbo.Likes",
                 c => new
                     {
@@ -223,6 +239,8 @@ namespace MyMarket.Data.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Likes", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Likes", "AdId", "dbo.Ads");
+            DropForeignKey("dbo.Flags", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Flags", "AdId", "dbo.Ads");
             DropForeignKey("dbo.Comments", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Ads", "User_Id", "dbo.AspNetUsers");
@@ -241,6 +259,8 @@ namespace MyMarket.Data.Migrations
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.Likes", new[] { "UserId" });
             DropIndex("dbo.Likes", new[] { "AdId" });
+            DropIndex("dbo.Flags", new[] { "UserId" });
+            DropIndex("dbo.Flags", new[] { "AdId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.Comments", new[] { "IsDeleted" });
@@ -258,6 +278,7 @@ namespace MyMarket.Data.Migrations
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.Likes");
+            DropTable("dbo.Flags");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.Comments");
