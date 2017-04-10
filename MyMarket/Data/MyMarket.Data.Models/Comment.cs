@@ -1,5 +1,6 @@
 ﻿namespace MyMarket.Data.Models
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,6 +9,11 @@
 
     public class Comment : BaseModel<int>
     {
+        public Comment()
+        {
+            this.CommentFlags = new HashSet<CommentFlag>();
+        }
+
         [Required]
         [MinLength(ValidationConstants.CONTENT_MIN_LENGTH)]
         [MaxLength(ValidationConstants.CONTENT_MAX_LENGHT)]
@@ -25,5 +31,7 @@
         public string UserId { get; set; }
 
         public virtual User User { get; set; }
+
+        public virtual ICollection<CommentFlag> CommentFlags { get; set; }
     }
 }

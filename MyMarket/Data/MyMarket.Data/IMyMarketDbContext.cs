@@ -16,6 +16,8 @@
 
         IDbSet<Comment> Comments { get; set; }
 
+        IDbSet<CommentFlag> CommentFlags { get; set; }
+
         IDbSet<Country> Countries { get; set; }
 
         IDbSet<Flag> Flags { get; set; }

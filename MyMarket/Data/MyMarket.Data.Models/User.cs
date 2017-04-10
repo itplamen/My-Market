@@ -17,6 +17,7 @@
             this.UserSettings = new UserSettings();
             this.Ads = new HashSet<Ad>();
             this.Comments = new HashSet<Comment>();
+            this.CommentFlags = new HashSet<CommentFlag>();
             this.Likes = new HashSet<Like>();
             this.Visits = new HashSet<Visit>();
             this.Flags = new HashSet<Flag>();
@@ -35,6 +36,8 @@
         public virtual ICollection<Ad> Ads { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
+
+        public virtual ICollection<CommentFlag> CommentFlags { get; set; }
 
         public virtual ICollection<Like> Likes { get; set; }
 
