@@ -16,7 +16,11 @@
         {
         }
 
+        public IDbSet<Ad> Ads { get; set; }
+
         public IDbSet<Category> Categories { get; set; }
+
+        public IDbSet<Comment> Comments { get; set; }
 
         public static MyMarketDbContext Create()
         {

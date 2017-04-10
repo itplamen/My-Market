@@ -1,11 +1,9 @@
 namespace MyMarket.Data.Migrations
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    public sealed class Configuration : DbMigrationsConfiguration<MyMarket.Data.ApplicationDbContext>
+    public sealed class Configuration : DbMigrationsConfiguration<MyMarketDbContext>
     {
         public Configuration()
         {
@@ -13,10 +11,16 @@ namespace MyMarket.Data.Migrations
             this.AutomaticMigrationDataLossAllowed = false;
         }
 
-        protected override void Seed(MyMarket.Data.ApplicationDbContext context)
+        protected override void Seed(MyMarketDbContext context)
         {
-             
-          
+            var seedData = new SeedData(context);
+
+            if (!context.Categories.Any())
+            {
+                context.Categories.AddOrUpdate(seedData.Categories.ToArray());
+            }
+
+            context.SaveChanges();
         }
     }
 }

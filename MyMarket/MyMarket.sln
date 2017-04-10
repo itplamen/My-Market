@@ -27,6 +27,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMarket.Services.Data", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMarket.Services.Web", "Services\MyMarket.Services.Web\MyMarket.Services.Web.csproj", "{8FD8EE0D-DFB8-47AF-8E81-F015B104AD00}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{E59B5A2B-E435-410E-BE5E-3717D6B068F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMarket.Common", "Common\MyMarket.Common\MyMarket.Common.csproj", "{250CED89-3811-4CE2-9817-C9C814E4001F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +65,10 @@ Global
 		{8FD8EE0D-DFB8-47AF-8E81-F015B104AD00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FD8EE0D-DFB8-47AF-8E81-F015B104AD00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FD8EE0D-DFB8-47AF-8E81-F015B104AD00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{250CED89-3811-4CE2-9817-C9C814E4001F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{250CED89-3811-4CE2-9817-C9C814E4001F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{250CED89-3811-4CE2-9817-C9C814E4001F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{250CED89-3811-4CE2-9817-C9C814E4001F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,5 +81,6 @@ Global
 		{4981CC6A-2F01-43F9-9CD5-2AC1F6467347} = {A1D7CBF2-F0EB-4813-95DB-922AD0578E64}
 		{54220273-9DB8-479A-9303-5DF6ECD3EECB} = {90F66DD6-4A47-4E29-A49A-0D25DEB19F00}
 		{8FD8EE0D-DFB8-47AF-8E81-F015B104AD00} = {90F66DD6-4A47-4E29-A49A-0D25DEB19F00}
+		{250CED89-3811-4CE2-9817-C9C814E4001F} = {E59B5A2B-E435-410E-BE5E-3717D6B068F3}
 	EndGlobalSection
 EndGlobal

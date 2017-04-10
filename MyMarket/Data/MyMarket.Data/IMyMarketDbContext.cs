@@ -8,7 +8,11 @@
 
     public interface IMyMarketDbContext : IDisposable
     {
+        IDbSet<Ad> Ads { get; set; }
+
         IDbSet<Category> Categories { get; set; }
+
+        IDbSet<Comment> Comments { get; set; }
 
         DbSet<TEntity> Set<TEntity>()
             where TEntity : class;

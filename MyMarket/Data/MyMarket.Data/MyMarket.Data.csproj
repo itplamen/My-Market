@@ -57,11 +57,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationDbContext.cs" />
-    <Compile Include="Migrations\201704091739270_InitialCreate.cs" />
-    <Compile Include="Migrations\201704091739270_InitialCreate.Designer.cs">
-      <DependentUpon>201704091739270_InitialCreate.cs</DependentUpon>
+    <Compile Include="IMyMarketDbContext.cs" />
+    <Compile Include="Migrations\201704100139507_InitialCreate.cs" />
+    <Compile Include="Migrations\201704100139507_InitialCreate.Designer.cs">
+      <DependentUpon>201704100139507_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\SeedData.cs" />
+    <Compile Include="MyMarketDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -80,8 +82,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704091739270_InitialCreate.resx">
-      <DependentUpon>201704091739270_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704100139507_InitialCreate.resx">
+      <DependentUpon>201704100139507_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
