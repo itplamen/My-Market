@@ -60,7 +60,6 @@
                 adToUpdate.Title = ad.Title;
                 adToUpdate.Description = ad.Description;
                 adToUpdate.Picture = ad.Picture;
-                adToUpdate.Views = ad.Views;
                 adToUpdate.Price = ad.Price;
                 adToUpdate.CategoryId = ad.CategoryId;
 

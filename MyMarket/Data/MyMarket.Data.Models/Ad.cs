@@ -11,6 +11,7 @@
     {
         public Ad()
         {
+            this.Visits = new HashSet<Visit>();
             this.Comments = new HashSet<Comment>();
         }
 
@@ -25,9 +26,6 @@
 
         public byte[] Picture { get; set; }
 
-        [Range(0, int.MaxValue)]
-        public int Views { get; set; }
-
         [Required]
         [Range(0, int.MaxValue)]
         public decimal Price { get; set; }
@@ -37,6 +35,8 @@
 
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
+
+        public virtual ICollection<Visit> Visits { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
     }

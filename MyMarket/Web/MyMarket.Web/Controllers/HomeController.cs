@@ -20,8 +20,6 @@
         public ActionResult Index()
         {
 
-            var thro = this.adsService.Get(-1);
-
             return View();
         }
 

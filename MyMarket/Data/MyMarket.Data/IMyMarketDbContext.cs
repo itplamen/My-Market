@@ -18,6 +18,8 @@
 
         IDbSet<Country> Countries { get; set; }
 
+        IDbSet<Visit> Visits { get; set; }
+
         DbSet<TEntity> Set<TEntity>()
             where TEntity : class;
 

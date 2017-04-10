@@ -15,7 +15,6 @@ namespace MyMarket.Data.Migrations
                         Title = c.String(nullable: false, maxLength: 50),
                         Description = c.String(nullable: false),
                         Picture = c.Binary(),
-                        Views = c.Int(nullable: false),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
                         CategoryId = c.Int(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
@@ -138,6 +137,22 @@ namespace MyMarket.Data.Migrations
                 .Index(t => t.RoleId);
             
             CreateTable(
+                "dbo.Visits",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        CreatedOn = c.DateTime(nullable: false),
+                        ModifiedOn = c.DateTime(),
+                        AdId = c.Int(nullable: false),
+                        UserId = c.String(maxLength: 128),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Ads", t => t.AdId, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
+                .Index(t => t.AdId)
+                .Index(t => t.UserId);
+            
+            CreateTable(
                 "dbo.Cities",
                 c => new
                     {
@@ -186,6 +201,8 @@ namespace MyMarket.Data.Migrations
         {
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.Cities", "CountryId", "dbo.Countries");
+            DropForeignKey("dbo.Visits", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Visits", "AdId", "dbo.Ads");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Comments", "UserId", "dbo.AspNetUsers");
@@ -199,6 +216,8 @@ namespace MyMarket.Data.Migrations
             DropIndex("dbo.Cities", new[] { "IsDeleted" });
             DropIndex("dbo.Cities", new[] { "CountryId" });
             DropIndex("dbo.Cities", new[] { "Name" });
+            DropIndex("dbo.Visits", new[] { "UserId" });
+            DropIndex("dbo.Visits", new[] { "AdId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
@@ -215,6 +234,7 @@ namespace MyMarket.Data.Migrations
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.Countries");
             DropTable("dbo.Cities");
+            DropTable("dbo.Visits");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
