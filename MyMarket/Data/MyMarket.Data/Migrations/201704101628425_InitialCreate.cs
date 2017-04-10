@@ -51,8 +51,8 @@ namespace MyMarket.Data.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Content = c.String(nullable: false, maxLength: 250),
-                        UserId = c.String(nullable: false, maxLength: 128),
                         AdId = c.Int(nullable: false),
+                        UserId = c.String(maxLength: 128),
                         CreatedOn = c.DateTime(nullable: false),
                         ModifiedOn = c.DateTime(),
                         IsDeleted = c.Boolean(nullable: false),
@@ -60,9 +60,9 @@ namespace MyMarket.Data.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Ads", t => t.AdId, cascadeDelete: true)
-                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
-                .Index(t => t.UserId)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
                 .Index(t => t.AdId)
+                .Index(t => t.UserId)
                 .Index(t => t.IsDeleted);
             
             CreateTable(
@@ -109,6 +109,22 @@ namespace MyMarket.Data.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.UserId);
+            
+            CreateTable(
+                "dbo.Likes",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        CreatedOn = c.DateTime(nullable: false),
+                        ModifiedOn = c.DateTime(),
+                        AdId = c.Int(nullable: false),
+                        UserId = c.String(maxLength: 128),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Ads", t => t.AdId, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
+                .Index(t => t.AdId)
                 .Index(t => t.UserId);
             
             CreateTable(
@@ -205,6 +221,8 @@ namespace MyMarket.Data.Migrations
             DropForeignKey("dbo.Visits", "AdId", "dbo.Ads");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Likes", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Likes", "AdId", "dbo.Ads");
             DropForeignKey("dbo.Comments", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Ads", "User_Id", "dbo.AspNetUsers");
@@ -221,11 +239,13 @@ namespace MyMarket.Data.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
+            DropIndex("dbo.Likes", new[] { "UserId" });
+            DropIndex("dbo.Likes", new[] { "AdId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.Comments", new[] { "IsDeleted" });
-            DropIndex("dbo.Comments", new[] { "AdId" });
             DropIndex("dbo.Comments", new[] { "UserId" });
+            DropIndex("dbo.Comments", new[] { "AdId" });
             DropIndex("dbo.Categories", new[] { "IsDeleted" });
             DropIndex("dbo.Categories", new[] { "Name" });
             DropIndex("dbo.Ads", new[] { "User_Id" });
@@ -237,6 +257,7 @@ namespace MyMarket.Data.Migrations
             DropTable("dbo.Visits");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
+            DropTable("dbo.Likes");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.Comments");

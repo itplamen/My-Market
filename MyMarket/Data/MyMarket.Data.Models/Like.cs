@@ -1,17 +1,19 @@
 ﻿namespace MyMarket.Data.Models
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     using Common.Models;
-    using MyMarket.Common;
 
-    public class Comment : BaseModel<int>
+    public class Like : IAuditInfo
     {
-        [Required]
-        [MinLength(ValidationConstants.CONTENT_MIN_LENGTH)]
-        [MaxLength(ValidationConstants.CONTENT_MAX_LENGHT)]
-        public string Content { get; set; }
+        [Key]
+        public int Id { get; set; }
+
+        public DateTime CreatedOn { get; set; }
+
+        public DateTime? ModifiedOn { get; set; }
 
         [Required]
         public int AdId { get; set; }
@@ -20,7 +22,7 @@
         public virtual Ad Ad { get; set; }
 
         /// <summary>
-        /// If UserId is null, therefore an anonymous user has made that comment.
+        /// If UserId is null, therefore an anonymous user has made that like.
         /// </summary>
         public string UserId { get; set; }
 

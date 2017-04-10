@@ -26,6 +26,8 @@
 
         public virtual IDbSet<Country> Countries { get; set; }
 
+        public virtual IDbSet<Like> Likes { get; set; }
+
         public virtual IDbSet<Visit> Visits { get; set; }
 
         public static MyMarketDbContext Create()

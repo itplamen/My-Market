@@ -12,6 +12,7 @@
         public Ad()
         {
             this.Visits = new HashSet<Visit>();
+            this.Likes = new HashSet<Like>();
             this.Comments = new HashSet<Comment>();
         }
 
@@ -37,6 +38,8 @@
         public virtual Category Category { get; set; }
 
         public virtual ICollection<Visit> Visits { get; set; }
+
+        public virtual ICollection<Like> Likes { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
     }
