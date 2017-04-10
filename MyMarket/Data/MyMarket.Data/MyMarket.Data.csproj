@@ -58,9 +58,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IMyMarketDbContext.cs" />
-    <Compile Include="Migrations\201704100215279_InitialCreate.cs" />
-    <Compile Include="Migrations\201704100215279_InitialCreate.Designer.cs">
-      <DependentUpon>201704100215279_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201704100501378_InitialCreate.cs" />
+    <Compile Include="Migrations\201704100501378_InitialCreate.Designer.cs">
+      <DependentUpon>201704100501378_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\SeedData.cs" />
     <Compile Include="MyMarketDbContext.cs" />
@@ -72,6 +72,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\MyMarket.Common\MyMarket.Common.csproj">
+      <Project>{250CED89-3811-4CE2-9817-C9C814E4001F}</Project>
+      <Name>MyMarket.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MyMarket.Data.Common\MyMarket.Data.Common.csproj">
       <Project>{1E420791-E729-454D-8CD0-51018841C74F}</Project>
       <Name>MyMarket.Data.Common</Name>
@@ -82,8 +86,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704100215279_InitialCreate.resx">
-      <DependentUpon>201704100215279_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704100501378_InitialCreate.resx">
+      <DependentUpon>201704100501378_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
