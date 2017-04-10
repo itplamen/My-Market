@@ -52,6 +52,10 @@
       <HintPath>..\..\packages\Autofac.Mvc5.4.0.1\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Bytes2you.Validation, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a7d501dd757e0442, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Bytes2you.Validation.2.0.0.0\lib\portable-win+net40+sl40+wp+Xbox40\Bytes2you.Validation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Glimpse.Ado, Version=1.7.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Glimpse.Ado.1.7.3\lib\net45\Glimpse.Ado.dll</HintPath>
       <Private>True</Private>
@@ -316,6 +320,10 @@
     <ProjectReference Include="..\..\Data\MyMarket.Data\MyMarket.Data.csproj">
       <Project>{D07FCB5C-088D-478A-BE83-3CF7A8F633A7}</Project>
       <Name>MyMarket.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\MyMarket.Services.Data\MyMarket.Services.Data.csproj">
+      <Project>{54220273-9DB8-479A-9303-5DF6ECD3EECB}</Project>
+      <Name>MyMarket.Services.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\MyMarket.Web.Infrastructure\MyMarket.Web.Infrastructure.csproj">
       <Project>{4981CC6A-2F01-43F9-9CD5-2AC1F6467347}</Project>

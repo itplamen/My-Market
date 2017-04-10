@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bytes2you.Validation, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a7d501dd757e0442, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Bytes2you.Validation.2.0.0.0\lib\portable-win+net40+sl40+wp+Xbox40\Bytes2you.Validation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,7 +44,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdsService.cs" />
+    <Compile Include="Contracts\IAdsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\MyMarket.Common\MyMarket.Common.csproj">
+      <Project>{250CED89-3811-4CE2-9817-C9C814E4001F}</Project>
+      <Name>MyMarket.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\MyMarket.Data.Common\MyMarket.Data.Common.csproj">
+      <Project>{1E420791-E729-454D-8CD0-51018841C74F}</Project>
+      <Name>MyMarket.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\MyMarket.Data.Models\MyMarket.Data.Models.csproj">
+      <Project>{45C7F315-2001-4745-BFFE-E7EED16342E1}</Project>
+      <Name>MyMarket.Data.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

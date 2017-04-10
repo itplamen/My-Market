@@ -8,6 +8,7 @@
     using Autofac.Integration.Mvc;
     using Data;
     using Data.Common;
+    using Services.Data.Contracts;
 
     public static class AutofacConfig
     {
@@ -42,8 +43,11 @@
         private static void RegisterServices(ContainerBuilder builder)
         {
             builder.Register(x => new MyMarketDbContext())
-                .As<IMyMarketDbContext>()
+                .As<DbContext>()
                 .InstancePerRequest();
+
+            var servicesAssembly = Assembly.GetAssembly(typeof(IAdsService));
+            builder.RegisterAssemblyTypes(servicesAssembly).AsImplementedInterfaces();
 
             builder.RegisterGeneric(typeof(DbRepository<>))
                 .As(typeof(IDbRepository<>))
