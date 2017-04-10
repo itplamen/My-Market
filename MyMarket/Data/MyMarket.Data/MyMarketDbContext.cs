@@ -20,7 +20,11 @@
 
         public IDbSet<Category> Categories { get; set; }
 
+        public IDbSet<City> Cities { get; set; }
+
         public IDbSet<Comment> Comments { get; set; }
+
+        public IDbSet<Country> Countries { get; set; }
 
         public static MyMarketDbContext Create()
         {

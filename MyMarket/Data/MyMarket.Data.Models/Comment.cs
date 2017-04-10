@@ -9,7 +9,8 @@
     public class Comment : BaseModel<int>
     {
         [Required]
-        [MaxLength(ValidationConstants.COMMENT_CONTENT_LENGHT)]
+        [MinLength(ValidationConstants.CONTENT_MIN_LENGTH)]
+        [MaxLength(ValidationConstants.CONTENT_MAX_LENGHT)]
         public string Content { get; set; }
 
         [Required]

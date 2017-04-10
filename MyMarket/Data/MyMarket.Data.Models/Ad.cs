@@ -5,6 +5,7 @@
     using System.ComponentModel.DataAnnotations.Schema;
 
     using Common.Models;
+    using MyMarket.Common;
 
     public class Ad : BaseModel<int>
     {
@@ -14,9 +15,13 @@
         }
 
         [Required]
+        [MinLength(ValidationConstants.NAME_MIN_LENGTH)]
+        [MaxLength(ValidationConstants.NAME_MAX_LENGTH)]
         public string Title { get; set; }
 
         [Required]
+        [MinLength(ValidationConstants.CONTENT_MIN_LENGTH)]
+        [MaxLength(ValidationConstants.CONTENT_MAX_LENGHT)]
         public string Description { get; set; }
 
         public byte[] Picture { get; set; }

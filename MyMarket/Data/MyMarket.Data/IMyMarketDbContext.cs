@@ -12,7 +12,11 @@
 
         IDbSet<Category> Categories { get; set; }
 
+        IDbSet<City> Cities { get; set; }
+
         IDbSet<Comment> Comments { get; set; }
+
+        IDbSet<Country> Countries { get; set; }
 
         DbSet<TEntity> Set<TEntity>()
             where TEntity : class;

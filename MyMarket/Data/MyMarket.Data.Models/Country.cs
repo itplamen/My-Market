@@ -4,14 +4,13 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    using Common.Models;
     using MyMarket.Common;
 
-    public class Category : BaseModel<int>
+    public class Country
     {
-        public Category()
+        public Country()
         {
-            this.Ads = new HashSet<Ad>();
+            this.Cities = new HashSet<City>();
         }
 
         [Required]
@@ -20,6 +19,6 @@
         [MaxLength(ValidationConstants.NAME_MAX_LENGTH)]
         public string Name { get; set; }
 
-        public virtual ICollection<Ad> Ads { get; set; }
+        public ICollection<City> Cities { get; set; }
     }
 }

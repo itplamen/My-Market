@@ -18,13 +18,13 @@
         public byte[] ProfilePicture { get; set; }
 
         [Column("FirstName")]
-        [MinLength(ValidationConstants.USER_NAME_MIN_LENGTH)]
-        [MaxLength(ValidationConstants.USER_NAME_MAX_LENGTH)]
+        [MinLength(ValidationConstants.NAME_MIN_LENGTH)]
+        [MaxLength(ValidationConstants.NAME_MAX_LENGTH)]
         public string FirstName { get; set; }
 
         [Column("LastName")]
-        [MinLength(ValidationConstants.USER_NAME_MIN_LENGTH)]
-        [MaxLength(ValidationConstants.USER_NAME_MAX_LENGTH)]
+        [MinLength(ValidationConstants.NAME_MIN_LENGTH)]
+        [MaxLength(ValidationConstants.NAME_MAX_LENGTH)]
         public string LastName { get; set; }
 
         [Column("DateOfBirth")]
