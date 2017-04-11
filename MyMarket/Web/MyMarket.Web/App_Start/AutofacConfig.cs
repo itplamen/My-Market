@@ -6,9 +6,12 @@
 
     using Autofac;
     using Autofac.Integration.Mvc;
+
     using Data;
     using Data.Common;
     using Services.Data.Contracts;
+    using Services.Web;
+    using Services.Web.Contracts;
 
     public static class AutofacConfig
     {
@@ -44,6 +47,10 @@
         {
             builder.Register(x => new MyMarketDbContext())
                 .As<DbContext>()
+                .InstancePerRequest();
+
+            builder.Register(x => new HttpCacheService())
+                .As<ICacheService>()
                 .InstancePerRequest();
 
             var servicesAssembly = Assembly.GetAssembly(typeof(IAdsService));

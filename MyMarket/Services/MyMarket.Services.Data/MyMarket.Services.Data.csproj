@@ -46,6 +46,8 @@
   <ItemGroup>
     <Compile Include="AdsService.cs" />
     <Compile Include="Contracts\IAdsService.cs" />
+    <Compile Include="Contracts\IFeedbacksService.cs" />
+    <Compile Include="FeedbacksService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
