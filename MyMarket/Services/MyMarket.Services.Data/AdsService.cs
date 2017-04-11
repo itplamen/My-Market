@@ -47,6 +47,24 @@
             return this.adsRepository.AllWithDeleted();
         }
 
+        public IQueryable<Ad> Latest(int count = ValidationConstants.TOP_ADS_COUNT)
+        {
+            Guard.WhenArgument(count, nameof(count)).IsLessThanOrEqual(ValidationConstants.INVALID_COUNT).Throw();
+
+            return this.adsRepository.All()
+                .OrderByDescending(a => a.CreatedOn)
+                .Take(count);
+        }
+
+        public IQueryable<Ad> MostLiked(int count = ValidationConstants.TOP_ADS_COUNT)
+        {
+            Guard.WhenArgument(count, nameof(count)).IsLessThanOrEqual(ValidationConstants.INVALID_COUNT).Throw();
+
+            return this.adsRepository.All()
+                .OrderByDescending(a => a.Likes.Count)
+                .Take(count);
+        }
+
         public Ad Update(int id, Ad ad)
         {
             Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.INVALID_ID).Throw();
