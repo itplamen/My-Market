@@ -15,6 +15,8 @@
 
         public AdsService(IDbRepository<Ad> adsRepository)
         {
+            Guard.WhenArgument(adsRepository, nameof(adsRepository)).IsNull().Throw();
+
             this.adsRepository = adsRepository;
         }
 
