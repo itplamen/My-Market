@@ -3,6 +3,8 @@
     using System.Collections.Generic;
 
     using Models;
+    using System.Drawing;
+    using System.IO;
 
     public class SeedData
     {
@@ -52,6 +54,16 @@
 
         private void SeedAds()
         {
+            string mypath = Path.Combine(@"D:\", "Athens.jpg");
+            var image = Image.FromFile(mypath);
+
+            byte[] arr = null;
+            using (var ms = new MemoryStream())
+            {
+                image.Save(ms, image.RawFormat);
+                arr = ms.ToArray();
+            }
+
             for (int i = 1; i <= 10; i++)
             {
                 this.Ads.Add(new Ad()
@@ -66,7 +78,8 @@
                     "<p><i>“It's great to be able to celebrate our first new route announcement of the year so early into 2017 and " +
                     "for another airport in Italy to become linked with Liverpool later this year.</i></p>",
                     Price = i,
-                    Category = this.Categories[0]
+                    Category = this.Categories[0],
+                    Picture = arr
                 });
             }
         }
