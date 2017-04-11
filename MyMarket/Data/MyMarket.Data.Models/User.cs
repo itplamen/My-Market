@@ -21,6 +21,7 @@
             this.Likes = new HashSet<Like>();
             this.Visits = new HashSet<Visit>();
             this.Flags = new HashSet<Flag>();
+            this.Feedbacks = new HashSet<Feedback>();
         }
 
         public UserSettings UserSettings { get; set; }
@@ -44,6 +45,8 @@
         public virtual ICollection<Visit> Visits { get; set; }
 
         public virtual ICollection<Flag> Flags { get; set; }
+
+        public virtual ICollection<Feedback> Feedbacks { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {

@@ -28,6 +28,8 @@
 
         public virtual IDbSet<Country> Countries { get; set; }
 
+        public virtual IDbSet<Feedback> Feedbacks { get; set; }
+
         public virtual IDbSet<Flag> Flags { get; set; }
 
         public virtual IDbSet<Like> Likes { get; set; }

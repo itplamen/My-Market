@@ -318,6 +318,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\MyMarket.Common\MyMarket.Common.csproj">
+      <Project>{250CED89-3811-4CE2-9817-C9C814E4001F}</Project>
+      <Name>MyMarket.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\MyMarket.Data.Common\MyMarket.Data.Common.csproj">
       <Project>{1E420791-E729-454D-8CD0-51018841C74F}</Project>
       <Name>MyMarket.Data.Common</Name>

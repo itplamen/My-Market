@@ -63,6 +63,7 @@
     <Compile Include="Comment.cs" />
     <Compile Include="CommentFlag.cs" />
     <Compile Include="Country.cs" />
+    <Compile Include="Feedback.cs" />
     <Compile Include="Flag.cs" />
     <Compile Include="Gender.cs" />
     <Compile Include="Like.cs" />
