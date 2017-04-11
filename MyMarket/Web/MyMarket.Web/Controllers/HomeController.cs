@@ -6,7 +6,7 @@
 
     using Services.Data.Contracts;
 
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly IAdsService adsService;
 

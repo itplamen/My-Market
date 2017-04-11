@@ -7,6 +7,7 @@
     using Autofac;
     using Autofac.Integration.Mvc;
 
+    using Controllers;
     using Data;
     using Data.Common;
     using Services.Data.Contracts;
@@ -59,6 +60,9 @@
             builder.RegisterGeneric(typeof(DbRepository<>))
                 .As(typeof(IDbRepository<>))
                 .InstancePerRequest();
+
+            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
+                .AssignableTo<BaseController>().PropertiesAutowired();
         }
     }
 }
