@@ -49,6 +49,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,9 +59,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IMyMarketDbContext.cs" />
-    <Compile Include="Migrations\201704111702272_InitialCreate.cs" />
-    <Compile Include="Migrations\201704111702272_InitialCreate.Designer.cs">
-      <DependentUpon>201704111702272_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201704120023122_InitialCreate.cs" />
+    <Compile Include="Migrations\201704120023122_InitialCreate.Designer.cs">
+      <DependentUpon>201704120023122_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\SeedData.cs" />
     <Compile Include="MyMarketDbContext.cs" />
@@ -86,8 +87,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704111702272_InitialCreate.resx">
-      <DependentUpon>201704111702272_InitialCreate.cs</DependentUpon>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201704120023122_InitialCreate.resx">
+      <DependentUpon>201704120023122_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

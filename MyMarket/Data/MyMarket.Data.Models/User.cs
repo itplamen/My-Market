@@ -14,6 +14,7 @@
     {
         public User()
         {
+            this.CreatedOn = DateTime.UtcNow;
             this.UserSettings = new UserSettings();
             this.Ads = new HashSet<Ad>();
             this.Comments = new HashSet<Comment>();

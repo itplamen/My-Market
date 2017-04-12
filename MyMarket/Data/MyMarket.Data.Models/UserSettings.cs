@@ -9,11 +9,6 @@
     [ComplexType]
     public class UserSettings
     {
-        public UserSettings()
-        {
-            this.DateOfBirth = null;
-        }
-
         [Column("ProfilePicture")]
         public byte[] ProfilePicture { get; set; }
 
@@ -40,10 +35,10 @@
         [Column("FullAddress")]
         public string FullAddress { get; set; }
 
-        [Column("LastLogin")]
+        [Column("LastLogin", TypeName = "DateTime2")]
         public DateTime LastLogin { get; set; }
 
-        [Column("LastLogout")]
+        [Column("LastLogout", TypeName = "DateTime2")]
         public DateTime LastLogout { get; set; }
     }
 }
