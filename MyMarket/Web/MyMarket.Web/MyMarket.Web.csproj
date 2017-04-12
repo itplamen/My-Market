@@ -317,6 +317,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Ads\Get.cshtml" />
     <Content Include="Views\Ads\AdError.cshtml" />
+    <Content Include="Views\Ads\Index.cshtml" />
+    <Content Include="Views\Shared\_AdsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

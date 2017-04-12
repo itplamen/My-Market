@@ -1,0 +1,25 @@
+﻿@using System.Globalization
+
+@using MyMarket.Web.Models.Ad
+
+@model AdViewModel
+
+<div class="col-md-3 ad-content-div">
+   <a href="~/Ads/@Model.Id">
+       @{
+           var base64 = Convert.ToBase64String(Model.Picture);
+           var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+       }
+       <img src="@imgSrc" class="img-responsive" />
+       <h4>@Model.Title</h4>
+       <p>
+           <span class="ad-price">&#8364 @Model.Price</span>
+           <span class="ad-created-date">@Model.CreatedOn.ToString("dd MMM yyyy", CultureInfo.InvariantCulture)</span>
+       </p>
+       <p>
+           <span class="glyphicon glyphicon-eye-open"><span>@Model.Visits</span></span>
+           <span class="glyphicon glyphicon-thumbs-up"><span>@Model.Likes</span></span>
+           <span class="glyphicon glyphicon-comment"><span>@Model.Comments</span></span>
+       </p>
+   </a>
+</div>

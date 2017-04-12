@@ -22,37 +22,44 @@ textarea {
  
 .wrap-box {
     background: url('Images/Home/strip-blue.png');
-    padding: 2px;
-     
+    padding: 2px;    
 }
 
-.topAd {
+.ad-content-div {
     width: 270px;
     margin-right: 20px;
     margin-bottom: 50px;
-    border-radius: 10px;
-    border: 1px solid black;
+    border: 5px solid #ebebeb;
     padding: 10px 10px 0 10px;
 }
 
-.topAd p span.glyphicon span {
+.ad-content-div:hover{
+	border: 5px solid #A0CBFF;
+}
+
+.ad-content-div a {
+    color: inherit; /* blue colors for links too */
+    text-decoration: inherit; /* no underline */
+}
+
+.ad-content-div p span.glyphicon span {
     margin-left: 3px;
 }
 
-.topAd p span.glyphicon {
+.ad-content-div p span.glyphicon {
     margin-right: 10px;
 }
 
-.topAd img {
+.ad-content-div img {
     width: 250px;
     height: 150px;
 }
 
-.adPrice {
+.ad-price {
     font-size: 16px;
     font-weight: bold;
 }
 
-.adCreatedDate {
+.ad-created-date {
     float: right;
 }
