@@ -22,7 +22,7 @@
                 var base64 = Convert.ToBase64String(ad.Picture);
                 var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
             }
-            <img src="@imgSrc" />
+            <img src="@imgSrc" class="img-responsive" />
             <h4>@ad.Title</h4>
             <p>
                 <span class="adPrice">&#8364 @ad.Price</span>
