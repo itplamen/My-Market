@@ -37,6 +37,13 @@
             return this.adsRepository.GetById(id);
         }
 
+        public IQueryable<Ad> GetAsQueryable(int id)
+        {
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.INVALID_ID).Throw();
+
+            return this.adsRepository.All().Where(a => a.Id == id);
+        }
+
         public IQueryable<Ad> All()
         {
             return this.adsRepository.All();

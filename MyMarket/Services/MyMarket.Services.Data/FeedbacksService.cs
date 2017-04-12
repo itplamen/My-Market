@@ -37,6 +37,13 @@
             return this.feedbacksRepository.GetById(id);
         }
 
+        public IQueryable<Feedback> GetAsQueryable(int id)
+        {
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.INVALID_ID).Throw();
+
+            return this.feedbacksRepository.All().Where(f => f.Id == id);
+        }
+
         public IQueryable<Feedback> All()
         {
             return this.feedbacksRepository.All();

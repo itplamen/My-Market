@@ -10,6 +10,8 @@
 
         Feedback Get(int id);
 
+        IQueryable<Feedback> GetAsQueryable(int id);
+
         IQueryable<Feedback> All();
 
         IQueryable<Feedback> AllWithDeleted();

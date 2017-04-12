@@ -11,6 +11,8 @@
 
         Ad Get(int id);
 
+        IQueryable<Ad> GetAsQueryable(int id);
+
         IQueryable<Ad> All();
 
         IQueryable<Ad> AllWithDeleted();
