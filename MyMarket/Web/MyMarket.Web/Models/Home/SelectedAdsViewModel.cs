@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
 
+    using Ad;
     using Infrastructure.Mapping;
 
     public class SelectedAdsViewModel : IMapFrom<AdViewModel>

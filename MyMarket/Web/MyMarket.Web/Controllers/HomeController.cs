@@ -5,6 +5,7 @@
 
     using Bytes2you.Validation;
 
+    using Models.Ad;
     using Models.Home;
     using Infrastructure.Mapping;
     using Services.Data.Contracts;

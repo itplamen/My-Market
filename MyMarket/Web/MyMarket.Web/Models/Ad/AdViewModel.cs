@@ -1,4 +1,4 @@
-﻿namespace MyMarket.Web.Models.Home
+﻿namespace MyMarket.Web.Models.Ad
 {
     using System;
 
