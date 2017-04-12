@@ -236,6 +236,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="App_Start\GlimpseSecurityPolicy.cs" />
@@ -243,6 +244,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Home\SelectedAdsViewModel.cs" />
+    <Compile Include="Models\Home\AdViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -264,6 +267,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -337,6 +342,10 @@
     <ProjectReference Include="..\..\Services\MyMarket.Services.Data\MyMarket.Services.Data.csproj">
       <Project>{54220273-9DB8-479A-9303-5DF6ECD3EECB}</Project>
       <Name>MyMarket.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\MyMarket.Services.Web\MyMarket.Services.Web.csproj">
+      <Project>{8fd8ee0d-dfb8-47af-8e81-f015b104ad00}</Project>
+      <Name>MyMarket.Services.Web</Name>
     </ProjectReference>
     <ProjectReference Include="..\MyMarket.Web.Infrastructure\MyMarket.Web.Infrastructure.csproj">
       <Project>{4981CC6A-2F01-43F9-9CD5-2AC1F6467347}</Project>

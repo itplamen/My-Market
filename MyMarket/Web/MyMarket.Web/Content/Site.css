@@ -22,3 +22,34 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.topAd {
+    width: 270px;
+    margin-right: 20px;
+    margin-bottom: 50px;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 10px 10px 0 10px;
+}
+
+.topAd p span.glyphicon span {
+    margin-left: 3px;
+}
+
+.topAd p span.glyphicon {
+    margin-right: 10px;
+}
+
+.topAd img {
+    width: 250px;
+    height: 150px;
+}
+
+.adPrice {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.adCreatedDate {
+    float: right;
+}
