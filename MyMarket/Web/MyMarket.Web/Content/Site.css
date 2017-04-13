@@ -63,3 +63,15 @@ textarea {
 .ad-created-date {
     float: right;
 }
+
+.inline-list{
+    color:#555555;
+	font-size:1em;
+    list-style:none;
+    padding: 0;
+    margin-left: 1.5em;
+}
+
+.inline-list li{
+    display: inline-block;
+}
