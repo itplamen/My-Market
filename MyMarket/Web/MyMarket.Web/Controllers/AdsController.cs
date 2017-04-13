@@ -1,12 +1,15 @@
 ﻿namespace MyMarket.Web.Controllers
 {
+    using System.Linq;
     using System.Web.Mvc;
 
     using Bytes2you.Validation;
 
     using Common;
+    using Models.Ad;
+    using Infrastructure.Mapping;
     using Services.Data.Contracts;
-    
+
     public class AdsController : BaseController
     {
         private readonly IAdsService adsService;
@@ -18,13 +21,34 @@
             this.adsService = adsService;
         }
 
+        [HttpGet]
+        public ActionResult Index()
+        {
+            var allAds = this.adsService.All()
+                .To<AdViewModel>()
+                .ToList();
+
+            return this.View(allAds);
+        }
+
+        [HttpGet]
         public ActionResult Get(int id)
         {
-            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.INVALID_ID).Throw();
+            if (id <= ValidationConstants.INVALID_ID)
+            {
+                return this.View("AdError");
+            }
 
+            var ad = this.adsService.GetAsQueryable(id)
+                .To<AdViewModel>()
+                .FirstOrDefault();
 
+            if (ad == null)
+            {
+                return this.View("AdError");
+            }
 
-            return this.View();
+            return this.View(ad);
         }
     }
 }
