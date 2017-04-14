@@ -1,0 +1,83 @@
+﻿@using MyMarket.Web.Models.Category
+
+@model IEnumerable<CategoryViewModel>
+@{
+    ViewBag.Title = "Ads";
+}
+
+<h1>@ViewBag.Title</h1>
+
+<div class="container main-content">
+    <div class="row">
+        @using (Ajax.BeginForm("SearchAds", null,
+                new AjaxOptions()
+                {
+                    HttpMethod = "POST",
+                    UpdateTargetId = "SearchResults",
+                    InsertionMode = InsertionMode.Replace
+                },
+                new { id = "SearchForm" }))
+        {
+            <div class="form-group">
+                <input type="text" name="SearchWord" class="form-control inline-block" placeholder="Search" />
+                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+
+            <ul id="SortAdsUl" class="sort-ads-list">
+                <li class="sort-text-li">Sort:</li>
+                <li>
+                    <label for="Date">Date</label>
+                    <input id="Date" type="radio" name="SortBy" value="date">
+                </li>
+                <li>
+                    <label for="Price">Price</label>
+                    <input id="Price" type="radio" name="SortBy" value="price">
+                </li>
+                <li>
+                    <label for="Visits">Visits</label>
+                    <input id="Visits" type="radio" name="SortBy" value="visits">
+                </li>
+                <li>
+                    <label for="Likes">Likes</label>
+                    <input id="Likes" type="radio" name="SortBy" value="likes">
+                </li>
+                <li>
+                    <label for="Comments">Comments</label>
+                    <input id="Comments" type="radio" name="SortBy" value="comments">
+                </li>
+            </ul>
+
+            <div class="col-md-3">
+                <h4 class="category-bg">Category</h4>
+                <div class="categories-checkbox">
+                    @foreach (var category in Model)
+                    {
+                        <div>
+                            <label>
+                                <input type="checkbox" name="ChosenCategoriesIds" value="@category.Id" />
+                                @category.Name
+                            </label>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+        <div id="SearchResults" class="col-md-9">
+            <div>Result: @Model.Count() ads</div>
+            @this.Html.Action("InitialAds")
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $('#SortAdsUl li input[type="radio"]').change(function () {
+            var $radio = $(this);
+            if (!$radio.is(':checked')) {
+                return;
+            }
+            $('#SearchForm').submit();
+        })
+    </script>    
+}
