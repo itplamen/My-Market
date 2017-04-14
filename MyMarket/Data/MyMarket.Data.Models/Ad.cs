@@ -18,12 +18,12 @@
         }
 
         [Required]
-        [MinLength(ValidationConstants.NAME_MIN_LENGTH)]
-        [MaxLength(ValidationConstants.NAME_MAX_LENGTH)]
+        [MinLength(ValidationConstants.NameMinLength)]
+        [MaxLength(ValidationConstants.NameMaxLenght)]
         public string Title { get; set; }
 
         [Required]
-        [MinLength(ValidationConstants.CONTENT_MIN_LENGTH)]
+        [MinLength(ValidationConstants.ContentMinLength)]
         public string Description { get; set; }
 
         public byte[] Picture { get; set; }
@@ -31,6 +31,10 @@
         [Required]
         [Range(0, int.MaxValue)]
         public decimal Price { get; set; }
+
+        public string UserId { get; set; }
+ 
+        public virtual User User { get; set; }
 
         [Required]
         public int CategoryId { get; set; }

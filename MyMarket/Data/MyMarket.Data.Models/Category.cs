@@ -16,8 +16,8 @@
 
         [Required]
         [Index(IsUnique = true)]
-        [MinLength(ValidationConstants.NAME_MIN_LENGTH)]
-        [MaxLength(ValidationConstants.NAME_MAX_LENGTH)]
+        [MinLength(ValidationConstants.NameMinLength)]
+        [MaxLength(ValidationConstants.NameMaxLenght)]
         public string Name { get; set; }
 
         public virtual ICollection<Ad> Ads { get; set; }

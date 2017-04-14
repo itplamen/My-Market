@@ -15,8 +15,8 @@
         }
 
         [Required]
-        [MinLength(ValidationConstants.CONTENT_MIN_LENGTH)]
-        [MaxLength(ValidationConstants.CONTENT_MAX_LENGHT)]
+        [MinLength(ValidationConstants.ContentMinLength)]
+        [MaxLength(ValidationConstants.ContentMaxLength)]
         public string Content { get; set; }
 
         [Required]

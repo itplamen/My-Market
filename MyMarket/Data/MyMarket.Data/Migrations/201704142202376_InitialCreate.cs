@@ -16,19 +16,19 @@ namespace MyMarket.Data.Migrations
                         Description = c.String(nullable: false),
                         Picture = c.Binary(),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        UserId = c.String(maxLength: 128),
                         CategoryId = c.Int(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
                         ModifiedOn = c.DateTime(),
                         IsDeleted = c.Boolean(nullable: false),
                         DeletedOn = c.DateTime(),
-                        User_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Categories", t => t.CategoryId, cascadeDelete: true)
-                .ForeignKey("dbo.AspNetUsers", t => t.User_Id)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
+                .Index(t => t.UserId)
                 .Index(t => t.CategoryId)
-                .Index(t => t.IsDeleted)
-                .Index(t => t.User_Id);
+                .Index(t => t.IsDeleted);
             
             CreateTable(
                 "dbo.Categories",
@@ -281,7 +281,7 @@ namespace MyMarket.Data.Migrations
             DropForeignKey("dbo.Comments", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.CommentFlags", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.Ads", "User_Id", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Ads", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.CommentFlags", "CommentId", "dbo.Comments");
             DropForeignKey("dbo.Comments", "AdId", "dbo.Ads");
             DropForeignKey("dbo.Ads", "CategoryId", "dbo.Categories");
@@ -311,9 +311,9 @@ namespace MyMarket.Data.Migrations
             DropIndex("dbo.Comments", new[] { "AdId" });
             DropIndex("dbo.Categories", new[] { "IsDeleted" });
             DropIndex("dbo.Categories", new[] { "Name" });
-            DropIndex("dbo.Ads", new[] { "User_Id" });
             DropIndex("dbo.Ads", new[] { "IsDeleted" });
             DropIndex("dbo.Ads", new[] { "CategoryId" });
+            DropIndex("dbo.Ads", new[] { "UserId" });
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.Countries");
             DropTable("dbo.Cities");
