@@ -1,6 +1,9 @@
-﻿@using MyMarket.Web.Models.Ad
+﻿@using MyMarket.Common;
+@using MyMarket.Web.Models.Ad
 
 @model AdsSearchResultViewModel
+
+<div>Result: @Model.Ads.Count() ads</div>
 
 @foreach (var ad in Model.Ads)
 {
@@ -18,7 +21,7 @@
                    data-ajax="true"
                    data-ajax-method="POST"
                    data-ajax-mode="replace"
-                   data-ajax-update="#search-results"
+                   data-ajax-update="#SearchResults"
                    href="/Ads/SearchAds?Page=1">
                     &laquo;
                 </a>
@@ -29,30 +32,34 @@
                    data-ajax="true"
                    data-ajax-method="POST"
                    data-ajax-mode="replace"
-                   data-ajax-update="#search-results"
+                   data-ajax-update="#SearchResults"
                    href="/Ads/SearchAds?Page=@(Model.CurrentPage - 1)">
                     &lsaquo;
                 </a>
             </li>
         }
 
-        @for (int i = 1; i <= Model.TotalPages; i++)
+        @if (Model.TotalPages > Constants.AdsStartPage)
         {
-            var className = Model.CurrentPage == i ? "active" : string.Empty;
-            <li class="@className">
-                @Ajax.ActionLink(i.ToString(), "SearchAds",
-                    new
-                    {   
-                        Page = i
-                    },
-                    new AjaxOptions()
-                    {
-                        HttpMethod = "POST",
-                        UpdateTargetId = "search-results",
-                        InsertionMode = InsertionMode.Replace
-                    })
-                 
-            </li>
+            for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                var className = Model.CurrentPage == i ? "active" : string.Empty;
+                
+                <li class="@className">
+                    @Ajax.ActionLink(i.ToString(), "SearchAds",
+                        new
+                        {
+                            Page = i
+                        },
+                        new AjaxOptions()
+                        {
+                            HttpMethod = "POST",
+                            UpdateTargetId = "SearchResults",
+                            InsertionMode = InsertionMode.Replace
+                        }
+                    )
+                </li>
+            }
         }
 
         @if (Model.CurrentPage < Model.TotalPages)
@@ -62,7 +69,7 @@
                    data-ajax="true"
                    data-ajax-method="POST"
                    data-ajax-mode="replace"
-                   data-ajax-update="#search-results"
+                   data-ajax-update="#SearchResults"
                    href="/Ads/SearchAds?Page=@(Model.CurrentPage + 1)">
                     &rsaquo;
                 </a>
@@ -73,7 +80,7 @@
                    data-ajax="true"
                    data-ajax-method="POST"
                    data-ajax-mode="replace"
-                   data-ajax-update="#search-results"
+                   data-ajax-update="#SearchResults"
                    href="/Ads/SearchAds?Page=@Model.TotalPages">
                     &raquo;
                 </a>
