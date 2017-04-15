@@ -32,14 +32,14 @@
 
         public Category Get(int id)
         {
-            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.INVALID_ID).Throw();
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.InvalidId).Throw();
 
             return this.categoriesRepository.GetById(id);
         }
 
         public IQueryable<Category> GetAsQueryable(int id)
         {
-            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.INVALID_ID).Throw();
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.InvalidId).Throw();
 
             return this.categoriesRepository.All().Where(c => c.Id == id);
         }
@@ -56,7 +56,7 @@
 
         public Category Update(int id, Category category)
         {
-            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.INVALID_ID).Throw();
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.InvalidId).Throw();
             Guard.WhenArgument(category, nameof(category)).IsNull().Throw();
 
             var categoryToUpdate = this.categoriesRepository.GetById(id);
@@ -76,7 +76,7 @@
 
         public Category Delete(int id)
         {
-            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.INVALID_ID).Throw();
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.InvalidId).Throw();
 
             var categoryToDelete = this.categoriesRepository.GetById(id);
 
@@ -91,7 +91,7 @@
 
         public bool HardDelete(int id)
         {
-            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.INVALID_ID).Throw();
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.InvalidId).Throw();
 
             var categoryToDelete = this.categoriesRepository.GetById(id);
 

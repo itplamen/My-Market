@@ -139,18 +139,10 @@
             int page = Constants.AdsStartPage, 
             int adsPerPage = Constants.AdsPerPage)
         {
+            Guard.WhenArgument(sortBy, nameof(sortBy)).IsNullOrEmpty().Throw();
+            Guard.WhenArgument(sortType, nameof(sortType)).IsNullOrEmpty().Throw();
             Guard.WhenArgument(page, nameof(page)).IsLessThan(Constants.AdsStartPage).Throw();
             Guard.WhenArgument(adsPerPage, nameof(adsPerPage)).IsLessThanOrEqual(MinAdsPerPageCount).Throw();
-
-            if (string.IsNullOrEmpty(sortBy))
-            {
-                sortBy = Constants.AdsInitialOrderBy;
-            }
-
-            if (string.IsNullOrEmpty(sortType))
-            {
-                sortType = Constants.AscendingSortAds;
-            }
 
             var adsToSkip = (page - 1) * Constants.AdsPerPage;
  

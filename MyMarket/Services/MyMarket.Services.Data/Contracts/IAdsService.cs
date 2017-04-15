@@ -1,5 +1,6 @@
 ﻿namespace MyMarket.Services.Data.Contracts
 {
+    using System.Collections.Generic;
     using System.Linq;
 
     using Common;
@@ -17,14 +18,21 @@
 
         IQueryable<Ad> AllWithDeleted();
 
-        IQueryable<Ad> Latest(int count = ValidationConstants.TOP_ADS_COUNT);
+        IQueryable<Ad> Latest(int count = Constants.TopAdsCount);
 
-        IQueryable<Ad> MostLiked(int count = ValidationConstants.TOP_ADS_COUNT);
+        IQueryable<Ad> MostLiked(int count = Constants.TopAdsCount);
 
         Ad Update(int id, Ad ad);
 
         Ad Delete(int id);
 
         bool HardDelete(int id);
+
+        IQueryable<Ad> Search(
+            string searchWord, 
+            IEnumerable<int> categoriesIds, 
+            string sortBy, string sortType, 
+            int page = Constants.AdsStartPage, 
+            int adsPerPage = Constants.AdsPerPage);
     }
 }
