@@ -13,11 +13,57 @@
     white-space: normal;
 }*/
 
-/* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.sort-ads-list {
+    color: #555555;
+	font-size: 1em;
+    list-style: none;
+    padding: 0;
+    margin-left: 1.5em;
+}
+
+.sort-ads-list li {
+    display: inline-block;
+    margin-right: 6px;
+}
+
+/*.sort-ads-list li:nth-child(5) {
+    display: block;
+    position: relative;
+    left: 43px;
+}*/
+ 
+
+.sort-ads-list li label {
+    cursor: pointer;
+}
+
+.sort-text-li {
+    font-size: 18px;
+}
+
+.category-bg {
+	margin-top: 10px;
+	background: #ECECEC;
+	padding: 10px 20px;
+	color: #333333;
+	text-transform: uppercase;
+	margin-bottom: 0;
+	font-size:16px;
+}
+
+.categories-checkbox {   
+    margin-top: 20px;
+    margin-left: 20px;
 }
  
 .wrap-box {
@@ -26,7 +72,7 @@ textarea {
 }
 
 .ad-content-div {
-    width: 270px;
+    width: 250px;
     margin-right: 20px;
     margin-bottom: 50px;
     border: 5px solid #ebebeb;
@@ -64,14 +110,9 @@ textarea {
     float: right;
 }
 
-.inline-list{
-    color:#555555;
-	font-size:1em;
-    list-style:none;
-    padding: 0;
-    margin-left: 1.5em;
-}
-
-.inline-list li{
-    display: inline-block;
+#SpinnerGif {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: none;
 }

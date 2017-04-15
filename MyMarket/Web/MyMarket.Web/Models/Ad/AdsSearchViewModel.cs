@@ -26,9 +26,5 @@
         public string SortBy { get; set; }
 
         public string SortType { get; set; }
-
-        public bool IsSearchTermValid => !string.IsNullOrWhiteSpace(this.SearchWord) && this.SearchWord.Length >= Constants.MinimumTermLength;
-
-        public int MinimumSearchTermLength => Constants.MinimumTermLength;
     }
 }

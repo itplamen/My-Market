@@ -235,6 +235,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
+    <Compile Include="Attributes\AjaxOnlyAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdsController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -245,7 +246,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Ad\AdsSearchViewModel.cs" />
+    <Compile Include="Models\Ad\AdsSearchResultViewModel.cs" />
     <Compile Include="Models\Ad\AdViewModel.cs" />
+    <Compile Include="Models\Category\CategoryViewModel.cs" />
     <Compile Include="Models\Home\SelectedAdsViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -256,6 +260,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\Home\strip-blue.png" />
+    <Content Include="Content\Images\spinner.gif" />
     <Content Include="ErrorPages\401.html" />
     <Content Include="ErrorPages\403.html" />
     <Content Include="ErrorPages\404.html" />
@@ -270,9 +275,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Areas\Administration\Views\web.config" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="Scripts\jquery-1.12.4.intellisense.js" />
+    <Content Include="Scripts\jquery-1.12.4.js" />
+    <Content Include="Scripts\jquery-1.12.4.min.js" />
+    <Content Include="Scripts\jquery-1.12.4.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
@@ -319,6 +326,7 @@
     <Content Include="Views\Ads\AdError.cshtml" />
     <Content Include="Views\Ads\Index.cshtml" />
     <Content Include="Views\Shared\_AdsPartial.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\AdViewModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -331,7 +339,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\MyMarket.Common\MyMarket.Common.csproj">

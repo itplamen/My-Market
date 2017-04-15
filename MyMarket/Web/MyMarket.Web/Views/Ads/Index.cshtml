@@ -9,41 +9,55 @@
 
 <div class="container main-content">
     <div class="row">
-        @using (Ajax.BeginForm("SearchAds", null,
+        @using (this.Ajax.BeginForm("SearchAds", null,
                 new AjaxOptions()
                 {
                     HttpMethod = "POST",
                     UpdateTargetId = "SearchResults",
-                    InsertionMode = InsertionMode.Replace
+                    InsertionMode = InsertionMode.Replace,
+                    OnBegin = "onAjaxRequestBegin",
+                    OnComplete = "onAjaxRequestComplete"
                 },
                 new { id = "SearchForm" }))
         {
             <div class="form-group">
-                <input type="text" name="SearchWord" class="form-control inline-block" placeholder="Search" />
+                <input type="text" id="SearchField" name="SearchWord" class="form-control inline-block" placeholder="Search" />
                 <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
             </div>
 
-            <ul id="SortAdsUl" class="sort-ads-list">
+            <ul class="sort-ads-list sort-by-category">
                 <li class="sort-text-li">Sort:</li>
                 <li>
                     <label for="Date">Date</label>
-                    <input id="Date" type="radio" name="SortBy" value="date">
+                    <input id="Date" type="radio" name="SortBy" checked="checked" value="CreatedOn">
                 </li>
                 <li>
                     <label for="Price">Price</label>
-                    <input id="Price" type="radio" name="SortBy" value="price">
+                    <input id="Price" type="radio" name="SortBy" value="Price">
                 </li>
                 <li>
                     <label for="Visits">Visits</label>
-                    <input id="Visits" type="radio" name="SortBy" value="visits">
+                    <input id="Visits" type="radio" name="SortBy" value="Visits">
                 </li>
                 <li>
                     <label for="Likes">Likes</label>
-                    <input id="Likes" type="radio" name="SortBy" value="likes">
+                    <input id="Likes" type="radio" name="SortBy" value="Likes">
                 </li>
                 <li>
                     <label for="Comments">Comments</label>
-                    <input id="Comments" type="radio" name="SortBy" value="comments">
+                    <input id="Comments" type="radio" name="SortBy" value="Comments">
+                </li>
+            </ul>
+            
+            <ul class="sort-ads-list sort-by-type">
+                <li class="sort-text-li">Type:</li>
+                <li>
+                    <label for="Ascending">Ascending</label>
+                    <input id="Ascending" type="radio" name="SortType" checked="checked" value="Ascending">
+                </li>
+                <li>
+                    <label for="Descending">Descending</label>
+                    <input id="Descending" type="radio" name="SortType" value="Descending">
                 </li>
             </ul>
 
@@ -63,21 +77,46 @@
             </div>
         }
         <div id="SearchResults" class="col-md-9">
-            <div>Result: @Model.Count() ads</div>
             @this.Html.Action("InitialAds")
         </div>
-
     </div>
 </div>
 
+<input type="image" id="SpinnerGif" src="~/Content/Images/spinner.gif" />
+
 @section Scripts {
     <script>
-        $('#SortAdsUl li input[type="radio"]').change(function () {
+        $('.sort-ads-list li input[type="radio"]').change(function () {
             var $radio = $(this);
             if (!$radio.is(':checked')) {
                 return;
             }
             $('#SearchForm').submit();
-        })
+        });
+
+        $('#SearchField').on('input', function () {
+            var $searchField = $(this);
+
+            if ($searchField.val().length === 0) {
+                var $sortBy = $('.sort-by-category li input[type="radio"]:checked'),
+                    $sortType = $('.sort-by-type li input[type="radio"]:checked'),
+                    sendParams = {
+                        sortBy: $sortBy.val(),
+                        sortType: $sortType.val()
+                    };
+
+                $.get("InitialAdsAjax", sendParams, function (data) {
+                    $("#SearchResults").html(data);
+                });
+            }
+        });
+
+        function onAjaxRequestBegin() {
+            $('#SpinnerGif').show();
+        }
+
+        function onAjaxRequestComplete() {
+            $('#SpinnerGif').hide();
+        }
     </script>    
 }

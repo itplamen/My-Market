@@ -3,7 +3,7 @@
     using System.Collections.Generic;
 
     using Infrastructure.Mapping;
-    
+
     public class AdsSearchResultViewModel : IMapFrom<AdViewModel>
     {
         public IEnumerable<AdViewModel> Ads { get; set; }

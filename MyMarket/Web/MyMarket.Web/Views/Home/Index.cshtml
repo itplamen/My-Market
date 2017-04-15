@@ -15,7 +15,9 @@
 <div class="row">
     @foreach (var latestAd in Model.LatestAds)
     {
-        this.Html.RenderPartial("_AdsPartial", latestAd);
+        <div class="col-md-3">
+            @this.Html.DisplayFor(_ => latestAd)
+        </div>
     }
 </div>
 
@@ -23,6 +25,8 @@
 <div class="row">
     @foreach (var likedAd in Model.MostLiked)
     {
-        this.Html.RenderPartial("_AdsPartial", likedAd);
+        <div class="col-md-3">
+            @this.Html.DisplayFor(_ => likedAd)
+        </div>
     }
 </div>
