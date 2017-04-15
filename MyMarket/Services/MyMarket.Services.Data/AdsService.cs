@@ -1,6 +1,8 @@
 ﻿namespace MyMarket.Services.Data
 {
+    using System.Collections.Generic;
     using System.Linq;
+    using System.Linq.Dynamic;
 
     using Bytes2you.Validation;
 
@@ -11,6 +13,7 @@
 
     public class AdsService : IAdsService
     {
+        private const int MinAdsPerPageCount = 1;
         private readonly IDbRepository<Ad> adsRepository;
 
         public AdsService(IDbRepository<Ad> adsRepository)
@@ -32,14 +35,14 @@
 
         public Ad Get(int id)
         {
-            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.INVALID_ID).Throw();
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.InvalidId).Throw();
 
             return this.adsRepository.GetById(id);
         }
 
         public IQueryable<Ad> GetAsQueryable(int id)
         {
-            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.INVALID_ID).Throw();
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.InvalidId).Throw();
 
             return this.adsRepository.All().Where(a => a.Id == id);
         }
@@ -54,18 +57,18 @@
             return this.adsRepository.AllWithDeleted();
         }
 
-        public IQueryable<Ad> Latest(int count = ValidationConstants.TOP_ADS_COUNT)
+        public IQueryable<Ad> Latest(int count = Constants.TopAdsCount)
         {
-            Guard.WhenArgument(count, nameof(count)).IsLessThanOrEqual(ValidationConstants.INVALID_COUNT).Throw();
+            Guard.WhenArgument(count, nameof(count)).IsLessThanOrEqual(ValidationConstants.InvalidCount).Throw();
 
             return this.adsRepository.All()
                 .OrderByDescending(a => a.CreatedOn)
                 .Take(count);
         }
 
-        public IQueryable<Ad> MostLiked(int count = ValidationConstants.TOP_ADS_COUNT)
+        public IQueryable<Ad> MostLiked(int count = Constants.TopAdsCount)
         {
-            Guard.WhenArgument(count, nameof(count)).IsLessThanOrEqual(ValidationConstants.INVALID_COUNT).Throw();
+            Guard.WhenArgument(count, nameof(count)).IsLessThanOrEqual(ValidationConstants.InvalidCount).Throw();
 
             return this.adsRepository.All()
                 .OrderByDescending(a => a.Likes.Count)
@@ -74,7 +77,7 @@
 
         public Ad Update(int id, Ad ad)
         {
-            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.INVALID_ID).Throw();
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.InvalidId).Throw();
             Guard.WhenArgument(ad, nameof(ad)).IsNull().Throw();
 
             var adToUpdate = this.adsRepository.GetById(id);
@@ -98,7 +101,7 @@
 
         public Ad Delete(int id)
         {
-            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.INVALID_ID).Throw();
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.InvalidId).Throw();
 
             var adToDelete = this.adsRepository.GetById(id);
 
@@ -113,7 +116,7 @@
 
         public bool HardDelete(int id)
         {
-            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.INVALID_ID).Throw();
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.InvalidId).Throw();
 
             var adToDelete = this.adsRepository.GetById(id);
 
@@ -126,6 +129,56 @@
             }
 
             return false;
+        }
+
+        public IQueryable<Ad> Search(
+            string searchWord, 
+            IEnumerable<int> categoriesIds, 
+            string sortBy, 
+            string sortType, 
+            int page = Constants.AdsStartPage, 
+            int adsPerPage = Constants.AdsPerPage)
+        {
+            Guard.WhenArgument(page, nameof(page)).IsLessThan(Constants.AdsStartPage).Throw();
+            Guard.WhenArgument(adsPerPage, nameof(adsPerPage)).IsLessThanOrEqual(MinAdsPerPageCount).Throw();
+
+            if (string.IsNullOrEmpty(sortBy))
+            {
+                sortBy = Constants.AdsInitialOrderBy;
+            }
+
+            if (string.IsNullOrEmpty(sortType))
+            {
+                sortType = Constants.AscendingSortAds;
+            }
+
+            var adsToSkip = (page - 1) * Constants.AdsPerPage;
+ 
+            var ads = this.BuildFilterQuery(searchWord, categoriesIds)
+                .OrderBy(sortBy + " " + sortType)
+                .Skip(adsToSkip)
+                .Take(adsPerPage);
+
+            return ads;
+        }
+
+        private IQueryable<Ad> BuildFilterQuery(string searchWord, IEnumerable<int> categoriesIds)
+        {
+            var ads = this.adsRepository.All();
+
+            if (!string.IsNullOrEmpty(searchWord))
+            {
+                ads = ads.Where(a => a.Title.Contains(searchWord) || a.User.Email.Contains(searchWord) || 
+                    a.User.UserName.Contains(searchWord) || a.User.UserSettings.FirstName == searchWord || 
+                    a.User.UserSettings.LastName == searchWord);
+            }
+
+            if (categoriesIds != null && categoriesIds.Any())
+            {
+                ads = ads.Where(a => categoriesIds.Contains(a.CategoryId));
+            }
+
+            return ads;
         }
     }
 }
