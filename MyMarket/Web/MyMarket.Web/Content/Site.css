@@ -13,9 +13,7 @@
     white-space: normal;
 }*/
 
-input,
-select,
-textarea {
+.form-max-width input, .form-max-width select, .form-max-width textarea {
     max-width: 280px;
 }
 
@@ -35,13 +33,6 @@ textarea {
     display: inline-block;
     margin-right: 6px;
 }
-
-/*.sort-ads-list li:nth-child(5) {
-    display: block;
-    position: relative;
-    left: 43px;
-}*/
- 
 
 .sort-ads-list li label {
     cursor: pointer;
@@ -115,4 +106,22 @@ textarea {
     top: 50%;
     left: 50%;
     display: none;
+}
+
+#CreateAdForm {
+    margin-top: 30px;
+}
+
+#CreateAdForm label {
+  
+}
+
+#CreateAdForm input[type="text"], #CreateAdForm textarea {
+    width: 100%;
+    margin-top: 20px;
+}
+
+#CreateAdForm textarea {
+    resize: none;
+    height: 200px;
 }
