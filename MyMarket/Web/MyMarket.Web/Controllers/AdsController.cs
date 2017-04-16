@@ -64,13 +64,6 @@
             return this.Search(new AdsSearchViewModel(), Constants.AdsStartPage);
         }
 
-        [HttpGet]
-        [AjaxOnly]
-        public ActionResult InitialAdsAjax(AdsSearchViewModel ajaxSearchModel)
-        {
-            return this.Search(ajaxSearchModel, Constants.AdsStartPage);
-        }
-
         [HttpPost]
         [AjaxOnly]
         public PartialViewResult SearchAds(AdsSearchViewModel searchModel, int? page)

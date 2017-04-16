@@ -91,6 +91,7 @@
             if (!$radio.is(':checked')) {
                 return;
             }
+
             $('#SearchForm').submit();
         });
 
@@ -98,16 +99,7 @@
             var $searchField = $(this);
 
             if ($searchField.val().length === 0) {
-                var $sortBy = $('.sort-by-category li input[type="radio"]:checked'),
-                    $sortType = $('.sort-by-type li input[type="radio"]:checked'),
-                    sendParams = {
-                        sortBy: $sortBy.val(),
-                        sortType: $sortType.val()
-                    };
-
-                $.get("InitialAdsAjax", sendParams, function (data) {
-                    $("#SearchResults").html(data);
-                });
+                $('#SearchForm').submit();
             }
         });
 
