@@ -89,7 +89,7 @@
                 adToUpdate.DeletedOn = ad.DeletedOn;
                 adToUpdate.Title = ad.Title;
                 adToUpdate.Description = ad.Description;
-                adToUpdate.Picture = ad.Picture;
+                //adToUpdate.Picture = ad.Picture;
                 adToUpdate.Price = ad.Price;
                 adToUpdate.CategoryId = ad.CategoryId;
 

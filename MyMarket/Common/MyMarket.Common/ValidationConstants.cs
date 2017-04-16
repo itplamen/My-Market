@@ -8,6 +8,10 @@
         public const int NameMinLength = 2;
         public const int NameMaxLenght = 50;
         public const int ContentMinLength = 2;
-        public const int ContentMaxLength = 250;
+        public const int ContentMaxLength = 4096;
+
+        // FileInfo
+        public const int MaxOriginalFileNameLength = 255;
+        public const int MaxFileExtensionLength = 4;
     }
 }

@@ -14,7 +14,7 @@ namespace MyMarket.Data.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Title = c.String(nullable: false, maxLength: 50),
                         Description = c.String(nullable: false),
-                        Picture = c.Binary(),
+                        MainImageId = c.Int(),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
                         UserId = c.String(maxLength: 128),
                         CategoryId = c.Int(nullable: false),
@@ -26,6 +26,8 @@ namespace MyMarket.Data.Migrations
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Categories", t => t.CategoryId, cascadeDelete: true)
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId)
+                .ForeignKey("dbo.Images", t => t.MainImageId)
+                .Index(t => t.MainImageId)
                 .Index(t => t.UserId)
                 .Index(t => t.CategoryId)
                 .Index(t => t.IsDeleted);
@@ -50,7 +52,7 @@ namespace MyMarket.Data.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Content = c.String(nullable: false, maxLength: 250),
+                        Content = c.String(nullable: false),
                         AdId = c.Int(nullable: false),
                         UserId = c.String(maxLength: 128),
                         CreatedOn = c.DateTime(nullable: false),
@@ -221,6 +223,20 @@ namespace MyMarket.Data.Migrations
                 .Index(t => t.UserId);
             
             CreateTable(
+                "dbo.Images",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        AdId = c.Int(),
+                        OriginalFileName = c.String(nullable: false, maxLength: 255),
+                        FileExtension = c.String(nullable: false, maxLength: 4),
+                        UrlPath = c.String(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Ads", t => t.AdId)
+                .Index(t => t.AdId);
+            
+            CreateTable(
                 "dbo.Cities",
                 c => new
                     {
@@ -269,6 +285,8 @@ namespace MyMarket.Data.Migrations
         {
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.Cities", "CountryId", "dbo.Countries");
+            DropForeignKey("dbo.Ads", "MainImageId", "dbo.Images");
+            DropForeignKey("dbo.Images", "AdId", "dbo.Ads");
             DropForeignKey("dbo.Visits", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Visits", "AdId", "dbo.Ads");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
@@ -291,6 +309,7 @@ namespace MyMarket.Data.Migrations
             DropIndex("dbo.Cities", new[] { "IsDeleted" });
             DropIndex("dbo.Cities", new[] { "CountryId" });
             DropIndex("dbo.Cities", new[] { "Name" });
+            DropIndex("dbo.Images", new[] { "AdId" });
             DropIndex("dbo.Visits", new[] { "UserId" });
             DropIndex("dbo.Visits", new[] { "AdId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
@@ -314,9 +333,11 @@ namespace MyMarket.Data.Migrations
             DropIndex("dbo.Ads", new[] { "IsDeleted" });
             DropIndex("dbo.Ads", new[] { "CategoryId" });
             DropIndex("dbo.Ads", new[] { "UserId" });
+            DropIndex("dbo.Ads", new[] { "MainImageId" });
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.Countries");
             DropTable("dbo.Cities");
+            DropTable("dbo.Images");
             DropTable("dbo.Visits");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");

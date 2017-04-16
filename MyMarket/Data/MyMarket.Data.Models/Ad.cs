@@ -15,6 +15,7 @@
             this.Likes = new HashSet<Like>();
             this.Comments = new HashSet<Comment>();
             this.Flags = new HashSet<Flag>();
+            this.Images = new HashSet<Image>();
         }
 
         [Required]
@@ -24,9 +25,12 @@
 
         [Required]
         [MinLength(ValidationConstants.ContentMinLength)]
+        [MaxLength(ValidationConstants.ContentMaxLength)]
         public string Description { get; set; }
 
-        public byte[] Picture { get; set; }
+        public int? MainImageId { get; set; }
+
+        public virtual Image MainImage { get; set; }
 
         [Required]
         [Range(0, int.MaxValue)]
@@ -49,5 +53,7 @@
         public virtual ICollection<Comment> Comments { get; set; }
 
         public virtual ICollection<Flag> Flags { get; set; }
+
+        public virtual ICollection<Image> Images { get; set; }
     }
 }

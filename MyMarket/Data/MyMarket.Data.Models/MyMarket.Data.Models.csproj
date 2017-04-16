@@ -64,8 +64,10 @@
     <Compile Include="CommentFlag.cs" />
     <Compile Include="Country.cs" />
     <Compile Include="Feedback.cs" />
+    <Compile Include="FileInfo.cs" />
     <Compile Include="Flag.cs" />
     <Compile Include="Gender.cs" />
+    <Compile Include="Image.cs" />
     <Compile Include="Like.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
