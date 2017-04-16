@@ -13,7 +13,7 @@
 
         public int Ads { get; set; }
 
-        public void CreateMappings(IMapperConfiguration config)
+        public void CreateMappings(IConfiguration config)
         {
             config.CreateMap<Category, CategoryViewModel>()
                 .ForMember(x => x.Ads, opt => opt.MapFrom(x => x.Ads.Count));

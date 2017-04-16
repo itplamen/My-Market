@@ -246,6 +246,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Ad\AdCreateViewModel.cs" />
     <Compile Include="Models\Ad\AdsSearchViewModel.cs" />
     <Compile Include="Models\Ad\AdsSearchResultViewModel.cs" />
     <Compile Include="Models\Ad\AdViewModel.cs" />
@@ -327,6 +328,7 @@
     <Content Include="Views\Ads\Index.cshtml" />
     <Content Include="Views\Shared\_AdsPartial.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\AdViewModel.cshtml" />
+    <Content Include="Views\Ads\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

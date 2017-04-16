@@ -29,7 +29,7 @@
 
         public int Comments { get; set; }
 
-        public void CreateMappings(IMapperConfiguration config)
+        public void CreateMappings(IConfiguration config)
         {
             config.CreateMap<Ad, AdViewModel>()
                 .ForMember(x => x.Category, opt => opt.MapFrom(x => x.Category.Name))

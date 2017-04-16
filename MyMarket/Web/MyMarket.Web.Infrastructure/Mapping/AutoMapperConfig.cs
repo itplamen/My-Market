@@ -9,70 +9,66 @@
 
     public class AutoMapperConfig
     {
-        public static MapperConfiguration Configuration { get; private set; }
-
-        public void Execute(Assembly assembly)
+        public static void RegisterMappings(params Assembly[] assemblies)
         {
-            Configuration = new MapperConfiguration(
-                cfg =>
-                {
-                    var types = assembly.GetExportedTypes();
-                    LoadStandardMappings(types, cfg);
-                    LoadReverseMappings(types, cfg);
-                    LoadCustomMappings(types, cfg);
-                });
+            var types = new List<Type>();
+            foreach (var assembly in assemblies)
+            {
+                types.AddRange(assembly.GetExportedTypes());
+            }
+
+            LoadStandardMappings(types);
+            LoadReverseMappings(types);
+            LoadCustomMappings(types);
         }
 
-        private static void LoadStandardMappings(IEnumerable<Type> types, IMapperConfiguration mapperConfiguration)
+        private static void LoadStandardMappings(IEnumerable<Type> types)
         {
-            var maps = (from t in types
-                        from i in t.GetInterfaces()
-                        where i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IMapFrom<>) &&
-                              !t.IsAbstract &&
-                              !t.IsInterface
-                        select new
-                        {
-                            Source = i.GetGenericArguments()[0],
-                            Destination = t
-                        }).ToArray();
+            var maps = types.SelectMany(t => t.GetInterfaces(), (t, i) => new { t, i })
+                .Where(
+                    type =>
+                        type.i.IsGenericType && type.i.GetGenericTypeDefinition() == typeof(IMapFrom<>) &&
+                        !type.t.IsAbstract
+                        && !type.t.IsInterface)
+                .Select(type => new { Source = type.i.GetGenericArguments()[0], Destination = type.t });
 
             foreach (var map in maps)
             {
-                mapperConfiguration.CreateMap(map.Source, map.Destination);
+                Mapper.CreateMap(map.Source, map.Destination);
+                Mapper.CreateMap(map.Destination, map.Source);
             }
         }
 
-        private static void LoadReverseMappings(IEnumerable<Type> types, IMapperConfiguration mapperConfiguration)
+        private static void LoadReverseMappings(IEnumerable<Type> types)
         {
-            var maps = (from t in types
-                        from i in t.GetInterfaces()
-                        where i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IMapTo<>) &&
-                              !t.IsAbstract &&
-                              !t.IsInterface
-                        select new
-                        {
-                            Destination = i.GetGenericArguments()[0],
-                            Source = t
-                        }).ToArray();
+            var maps = types.SelectMany(t => t.GetInterfaces(), (t, i) => new { t, i })
+                .Where(
+                    type =>
+                        type.i.IsGenericType && type.i.GetGenericTypeDefinition() == typeof(IMapTo<>) &&
+                        !type.t.IsAbstract
+                        && !type.t.IsInterface)
+                .Select(type => new { Destination = type.i.GetGenericArguments()[0], Source = type.t });
 
             foreach (var map in maps)
             {
-                mapperConfiguration.CreateMap(map.Source, map.Destination);
+                Mapper.CreateMap(map.Source, map.Destination);
+                Mapper.CreateMap(map.Destination, map.Source);
             }
         }
 
-        private static void LoadCustomMappings(IEnumerable<Type> types, IMapperConfiguration mapperConfiguration)
+        private static void LoadCustomMappings(IEnumerable<Type> types)
         {
-            var maps = (from t in types
-                        from i in t.GetInterfaces()
-                        where typeof(IHaveCustomMappings).IsAssignableFrom(t) &&
-                              !t.IsAbstract &&
-                              !t.IsInterface
-                        select (IHaveCustomMappings)Activator.CreateInstance(t)).ToArray();
+            var maps =
+                types.SelectMany(t => t.GetInterfaces(), (t, i) => new { t, i })
+                    .Where(
+                        type =>
+                            typeof(IHaveCustomMappings).IsAssignableFrom(type.t) && !type.t.IsAbstract &&
+                            !type.t.IsInterface)
+                    .Select(type => (IHaveCustomMappings)Activator.CreateInstance(type.t));
 
             foreach (var map in maps)
             {
-                map.CreateMappings(mapperConfiguration);
+                map.CreateMappings(Mapper.Configuration);
             }
         }
     }
