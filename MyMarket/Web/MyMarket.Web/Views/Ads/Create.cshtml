@@ -1,0 +1,77 @@
+﻿@using MyMarket.Web.Models.Ad
+
+@model AdCreateViewModel
+@{
+    ViewBag.Title = "Create Ad";
+}
+
+@if (this.User.Identity.IsAuthenticated)
+{
+    <h2>@ViewBag.Title</h2>
+
+    using (Html.BeginForm("Create", "Ads", FormMethod.Post, new { id = "CreateAdForm", @class = "form-horizontal", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(a => a.Title, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.EditorFor(a => a.Title, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(a => a.CategoryId, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.CategoryId, new SelectList(Model.Categories, "Id", "Name", 1), new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(a => a.Price, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.EditorFor(a => a.Price, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(a => a.Description, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.EditorFor(a => a.Description, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(a => a.MainPicture, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                <div class="input-group">
+                    @Html.TextBoxFor(a => a.MainPicture, new { type = "file" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(a => a.OtherPictures, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                <div class="input-group">
+                    @Html.TextBoxFor(a => a.OtherPictures, new { type = "file" })
+                    @Html.TextBoxFor(a => a.OtherPictures, new { type = "file" })
+                    @Html.TextBoxFor(a => a.OtherPictures, new { type = "file" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-5 col-md-6">
+                <input type="submit" class="btn btn-primary" value="Create" />
+                <input type="button" class="btn btn-default" value="Clear" />
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="alert alert-info" role="alert">
+        <i class="glyphicon glyphicon-remove-sign"></i>
+        <strong>You are unauthorized!</strong> Please log into your acount first.
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
