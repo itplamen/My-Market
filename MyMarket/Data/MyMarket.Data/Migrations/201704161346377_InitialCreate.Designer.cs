@@ -13,7 +13,7 @@ namespace MyMarket.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201704160441171_InitialCreate"; }
+            get { return "201704161346377_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

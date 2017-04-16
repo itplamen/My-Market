@@ -44,7 +44,8 @@
         {
             Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.InvalidId).Throw();
 
-            return this.adsRepository.All().Where(a => a.Id == id);
+            return this.adsRepository.All()
+                .Where(a => a.Id == id);
         }
 
         public IQueryable<Ad> All()
@@ -89,7 +90,7 @@
                 adToUpdate.DeletedOn = ad.DeletedOn;
                 adToUpdate.Title = ad.Title;
                 adToUpdate.Description = ad.Description;
-                //adToUpdate.Picture = ad.Picture;
+                adToUpdate.MainImageId = ad.MainImageId;
                 adToUpdate.Price = ad.Price;
                 adToUpdate.CategoryId = ad.CategoryId;
 

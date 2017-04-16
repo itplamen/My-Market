@@ -70,7 +70,9 @@
     <Compile Include="Contracts\IAdsService.cs" />
     <Compile Include="Contracts\ICategoriesService.cs" />
     <Compile Include="Contracts\IFeedbacksService.cs" />
+    <Compile Include="Contracts\IImagesService.cs" />
     <Compile Include="FeedbacksService.cs" />
+    <Compile Include="ImagesService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

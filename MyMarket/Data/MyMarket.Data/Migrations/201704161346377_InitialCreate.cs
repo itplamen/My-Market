@@ -231,10 +231,15 @@ namespace MyMarket.Data.Migrations
                         OriginalFileName = c.String(nullable: false, maxLength: 255),
                         FileExtension = c.String(nullable: false, maxLength: 4),
                         UrlPath = c.String(),
+                        CreatedOn = c.DateTime(nullable: false),
+                        ModifiedOn = c.DateTime(),
+                        IsDeleted = c.Boolean(nullable: false),
+                        DeletedOn = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Ads", t => t.AdId)
-                .Index(t => t.AdId);
+                .Index(t => t.AdId)
+                .Index(t => t.IsDeleted);
             
             CreateTable(
                 "dbo.Cities",
@@ -309,6 +314,7 @@ namespace MyMarket.Data.Migrations
             DropIndex("dbo.Cities", new[] { "IsDeleted" });
             DropIndex("dbo.Cities", new[] { "CountryId" });
             DropIndex("dbo.Cities", new[] { "Name" });
+            DropIndex("dbo.Images", new[] { "IsDeleted" });
             DropIndex("dbo.Images", new[] { "AdId" });
             DropIndex("dbo.Visits", new[] { "UserId" });
             DropIndex("dbo.Visits", new[] { "AdId" });

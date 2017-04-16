@@ -2,13 +2,11 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using Common.Models;
     using MyMarket.Common;
 
-    public abstract class FileInfo
+    public abstract class FileInfo : BaseModel<int>
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         [MaxLength(ValidationConstants.MaxOriginalFileNameLength)]
         public string OriginalFileName { get; set; }
