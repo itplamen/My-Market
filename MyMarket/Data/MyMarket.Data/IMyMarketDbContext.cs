@@ -24,6 +24,8 @@
 
         IDbSet<Flag> Flags { get; set; }
 
+        IDbSet<Image> Images { get; set; }
+
         IDbSet<Like> Likes { get; set; }
 
         IDbSet<Visit> Visits { get; set; }

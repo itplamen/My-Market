@@ -32,6 +32,8 @@
 
         public virtual IDbSet<Flag> Flags { get; set; }
 
+        public virtual IDbSet<Image> Images { get; set; }
+
         public virtual IDbSet<Like> Likes { get; set; }
 
         public virtual IDbSet<Visit> Visits { get; set; }
