@@ -2,8 +2,12 @@
 {
     public static class ErrorMessages
     {
-        // Common
-        public const string INVALID_ID = "ID is invalid!";
-        public const string ENTITY_CANNOT_BE_NULL = "Entity cannot be null!";
+        // All entities
+        public const string InvalidId = "ID is invalid!";
+        public const string EntityCannotBeNull = "Entity cannot be null!";
+
+        // Ad
+        public const string InvalidImageSize = "The maximum size of the image is {0} kb!";
+        public const string InvalidImageType = "The image type is invalid! Allowed types: {0}!";
     }
 }

@@ -112,11 +112,11 @@
     margin-top: 30px;
 }
 
-#CreateAdForm label {
-  
+#CreateAdForm input[type="file"] {
+    margin-top: 6px;
 }
 
-#CreateAdForm input[type="text"], #CreateAdForm textarea {
+#CreateAdForm input[type="text"], #CreateAdForm textarea, #CreateAdForm select {
     width: 100%;
     margin-top: 20px;
 }

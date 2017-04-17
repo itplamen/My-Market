@@ -1,4 +1,5 @@
-﻿@using MyMarket.Web.Models.Ad
+﻿@using MyMarket.Common;
+@using MyMarket.Web.Models.Ad
 
 @model AdCreateViewModel
 @{
@@ -17,7 +18,7 @@
         <div class="form-group">
             @Html.LabelFor(a => a.Title, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.EditorFor(a => a.Title, new { @class = "form-control" })
+                @Html.EditorFor(a => a.Title, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter title..." }})
             </div>
         </div>
         <div class="form-group">
@@ -29,30 +30,41 @@
         <div class="form-group">
             @Html.LabelFor(a => a.Price, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.EditorFor(a => a.Price, new { @class = "form-control" })
+                @Html.EditorFor(a => a.Price, new { htmlAttributes = new { @class = "form-control", @Value = "0.00", placeholder = "Enter price, e.g. 0.00 " }})
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(a => a.Description, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.EditorFor(a => a.Description, new { @class = "form-control" })
+                @Html.EditorFor(a => a.Description, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter description..." }})
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(a => a.MainPicture, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                <div class="input-group">
-                    @Html.TextBoxFor(a => a.MainPicture, new { type = "file" })
-                </div>
+                @Html.TextBoxFor(a => a.MainPicture, new { type = "file" })
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(a => a.OtherPictures, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
                 <div class="input-group">
-                    @Html.TextBoxFor(a => a.OtherPictures, new { type = "file" })
-                    @Html.TextBoxFor(a => a.OtherPictures, new { type = "file" })
-                    @Html.TextBoxFor(a => a.OtherPictures, new { type = "file" })
+                    <p>
+                        @Html.TextBoxFor(a => a.OtherPictures, new { type = "file" })
+                        @Html.TextBoxFor(a => a.OtherPictures, new { type = "file" })
+                        @Html.TextBoxFor(a => a.OtherPictures, new { type = "file" })
+                    </p>
+                    <p>
+                        <strong>
+                            Allowed formats:
+                            @ValidationConstants.JpgImage,
+                            @ValidationConstants.JpegImage,
+                            @ValidationConstants.PngImage,
+                            @ValidationConstants.GifImage
+                        </strong>
+                        <br />
+                        <strong>Maximum size: @ValidationConstants.AdImageContentLengthInKilobytes kb</strong>
+                    </p>
                 </div>
             </div>
         </div>
