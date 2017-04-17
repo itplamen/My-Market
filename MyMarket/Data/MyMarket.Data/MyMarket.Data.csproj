@@ -59,9 +59,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IMyMarketDbContext.cs" />
-    <Compile Include="Migrations\201704161346377_InitialCreate.cs" />
-    <Compile Include="Migrations\201704161346377_InitialCreate.Designer.cs">
-      <DependentUpon>201704161346377_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201704170627438_InitialCreate.cs" />
+    <Compile Include="Migrations\201704170627438_InitialCreate.Designer.cs">
+      <DependentUpon>201704170627438_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\SeedData.cs" />
     <Compile Include="MyMarketDbContext.cs" />
@@ -90,8 +90,8 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704161346377_InitialCreate.resx">
-      <DependentUpon>201704161346377_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704170627438_InitialCreate.resx">
+      <DependentUpon>201704170627438_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
