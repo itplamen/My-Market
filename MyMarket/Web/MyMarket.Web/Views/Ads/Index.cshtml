@@ -2,10 +2,10 @@
 
 @model IEnumerable<CategoryViewModel>
 @{
-    ViewBag.Title = "Ads";
+    ViewBag.Title = "Search Ads";
 }
 
-<h1>@ViewBag.Title</h1>
+<h2>Ads</h2>
 
 <div class="container main-content">
     <div class="row">
@@ -18,7 +18,7 @@
                     OnBegin = "onAjaxRequestBegin",
                     OnComplete = "onAjaxRequestComplete"
                 },
-                new { id = "SearchForm" }))
+                new { id = "SearchForm", @class = "form-max-width" }))
         {
             <div class="form-group">
                 <input type="text" id="SearchField" name="SearchWord" class="form-control inline-block" placeholder="Search" />

@@ -67,7 +67,13 @@
     margin-right: 20px;
     margin-bottom: 50px;
     border: 5px solid #ebebeb;
-    padding: 10px 10px 0 10px;
+    padding: 10px 10px 0 10px;    
+}
+
+.ad-content-div h4 {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .ad-content-div:hover{
@@ -75,8 +81,8 @@
 }
 
 .ad-content-div a {
-    color: inherit; /* blue colors for links too */
-    text-decoration: inherit; /* no underline */
+    color: inherit;  
+    text-decoration: inherit;
 }
 
 .ad-content-div p span.glyphicon span {
@@ -88,7 +94,7 @@
 }
 
 .ad-content-div img {
-    width: 250px;
+    width: 220px;
     height: 150px;
 }
 

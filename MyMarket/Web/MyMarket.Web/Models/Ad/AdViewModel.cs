@@ -17,7 +17,7 @@
 
         public string Description { get; set; }
 
-        public byte[] Picture { get; set; }
+        public string UrlPath { get; set; }
 
         public decimal Price { get; set; }
 
@@ -32,6 +32,7 @@
         public void CreateMappings(IConfiguration config)
         {
             config.CreateMap<Ad, AdViewModel>()
+                .ForMember(x => x.UrlPath, opt => opt.MapFrom(x => x.MainImage.UrlPath))
                 .ForMember(x => x.Category, opt => opt.MapFrom(x => x.Category.Name))
                 .ForMember(x => x.Visits, opt => opt.MapFrom(x => x.Visits.Count))
                 .ForMember(x => x.Likes, opt => opt.MapFrom(x => x.Likes.Count))

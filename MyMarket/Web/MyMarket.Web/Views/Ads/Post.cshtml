@@ -3,14 +3,14 @@
 
 @model AdCreateViewModel
 @{
-    ViewBag.Title = "Create Ad";
+    ViewBag.Title = "Post Ad";
 }
 
 @if (this.User.Identity.IsAuthenticated)
 {
     <h2>@ViewBag.Title</h2>
 
-    using (Html.BeginForm("Create", "Ads", FormMethod.Post, new { id = "CreateAdForm", @class = "form-horizontal", enctype = "multipart/form-data" }))
+    using (Html.BeginForm("Post", "Ads", FormMethod.Post, new { id = "CreateAdForm", @class = "form-horizontal", enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary("", new { @class = "text-danger" })
@@ -71,7 +71,7 @@
         <div class="form-group">
             <div class="col-md-offset-5 col-md-6">
                 <input type="submit" class="btn btn-primary" value="Create" />
-                <input type="button" class="btn btn-default" value="Clear" />
+                <input type="reset" class="btn btn-default" value="Clear" />
             </div>
         </div>
     }

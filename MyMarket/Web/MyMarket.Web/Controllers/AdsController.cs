@@ -60,9 +60,9 @@
             var adToCreate = Mapper.Map<Ad>(createModel);
             adToCreate.UserId = this.User.Identity.GetUserId();
 
-            this.adsService.Add(adToCreate);
+            this.ProcessImages(createModel.MainPicture, createModel.OtherPictures, adToCreate);
 
-            this.ProcessImages(createModel.MainPicture, createModel.OtherPictures, adToCreate.Id);
+            this.adsService.Add(adToCreate);
 
             // TODO: Redirect to Ads/{id}
             return RedirectToAction("Index");
@@ -143,11 +143,12 @@
                 15 * 60);
         }
 
-        private void ProcessImages(HttpPostedFileBase mainImage, IEnumerable<HttpPostedFileBase> otherImages, int adId)
+        private void ProcessImages(HttpPostedFileBase mainImage, IEnumerable<HttpPostedFileBase> otherImages, Ad ad)
         {
             if (mainImage != null)
             {
-                this.UploadImage(mainImage, adId);
+                var img = this.UploadImage(mainImage);
+                ad.MainImageId = img.Id;
             }
 
             if (otherImages != null && otherImages.Any())
@@ -156,33 +157,35 @@
                 {
                     if (img != null)
                     {
-                        this.UploadImage(img, adId);
+                        var imgToAd = this.UploadImage(img);
+                        ad.Images.Add(imgToAd);
                     }
                 }
             }
         }
 
-        private void UploadImage(HttpPostedFileBase image, int adId)
+        private Image UploadImage(HttpPostedFileBase image)
         {
             string fileExtension = Path.GetExtension(image.FileName);
-            string fileName = string.Format("{0}.{1}", Guid.NewGuid(), fileExtension);
-            string path = Path.Combine(this.Server.MapPath(@"~/Content/Images/Ads/"), fileName);
+            string fileName = string.Format("{0}{1}", Guid.NewGuid(), fileExtension);
+            string path = Path.Combine(this.Server.MapPath(@"~/Content/Images/Post/"), fileName);
             image.SaveAs(path);
 
-            this.SaveImage(fileExtension, image.FileName, path, adId);
+            return this.SaveImage(fileExtension, image.FileName, path);
         }
 
-        private void SaveImage(string fileExtension, string originalFileName, string urlPath, int adId)
+        private Image SaveImage(string fileExtension, string originalFileName, string urlPath)
         {
             var image = new Image()
             {
                 FileExtension = fileExtension,
                 OriginalFileName = originalFileName,
-                UrlPath = urlPath,
-                AdId = adId
+                UrlPath = urlPath
             };
 
             this.imagesService.Add(image);
+
+            return image;
         }
     }
 }

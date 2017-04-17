@@ -16,6 +16,8 @@
         public ImagesService(IDbRepository<Image> imagesRepository)
         {
             Guard.WhenArgument(imagesRepository, nameof(imagesRepository)).IsNull().Throw();
+
+            this.imagesRepository = imagesRepository;
         }
 
         public int Add(Image image)
