@@ -1,9 +1,10 @@
 ﻿namespace MyMarket.Common
 {
-    public static class Constants
+    public static class NativeConstants
     {
         // Common
         public const int MinSearchTermLength = 3;
+        public const string ImagesPath = @"~/Content/Images/Posts/";
 
         // Ads
         public const int TopAdsCount = 8;
