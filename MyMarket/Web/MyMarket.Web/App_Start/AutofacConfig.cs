@@ -11,6 +11,7 @@
     using Data;
     using Data.Common;
     using Services.Data.Contracts;
+    using Services.FileSystem.Contracts;
     using Services.Web;
     using Services.Web.Contracts;
 
@@ -54,8 +55,11 @@
                 .As<ICacheService>()
                 .InstancePerRequest();
 
-            var servicesAssembly = Assembly.GetAssembly(typeof(IAdsService));
-            builder.RegisterAssemblyTypes(servicesAssembly).AsImplementedInterfaces();
+            var dataServicesAssembly = Assembly.GetAssembly(typeof(IAdsService));
+            builder.RegisterAssemblyTypes(dataServicesAssembly).AsImplementedInterfaces();
+
+            var fileSystemServicesAssembly = Assembly.GetAssembly(typeof(IFileSystemService));
+            builder.RegisterAssemblyTypes(fileSystemServicesAssembly).AsImplementedInterfaces();
 
             builder.RegisterGeneric(typeof(DbRepository<>))
                 .As(typeof(IDbRepository<>))
