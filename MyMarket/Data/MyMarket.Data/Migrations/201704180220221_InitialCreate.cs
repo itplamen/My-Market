@@ -12,7 +12,7 @@ namespace MyMarket.Data.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Title = c.String(nullable: false, maxLength: 50),
+                        Title = c.String(nullable: false, maxLength: 250),
                         Description = c.String(nullable: false),
                         MainImageId = c.Int(),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
@@ -37,7 +37,7 @@ namespace MyMarket.Data.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 50),
+                        Name = c.String(nullable: false, maxLength: 250),
                         CreatedOn = c.DateTime(nullable: false),
                         ModifiedOn = c.DateTime(),
                         IsDeleted = c.Boolean(nullable: false),
@@ -89,8 +89,8 @@ namespace MyMarket.Data.Migrations
                     {
                         Id = c.String(nullable: false, maxLength: 128),
                         ProfilePicture = c.Binary(),
-                        FirstName = c.String(maxLength: 50),
-                        LastName = c.String(maxLength: 50),
+                        FirstName = c.String(maxLength: 250),
+                        LastName = c.String(maxLength: 250),
                         DateOfBirth = c.DateTime(),
                         Gender = c.Int(nullable: false),
                         Nationality = c.String(),
@@ -134,8 +134,8 @@ namespace MyMarket.Data.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 50),
-                        Email = c.String(maxLength: 50),
+                        Name = c.String(nullable: false, maxLength: 250),
+                        Email = c.String(maxLength: 250),
                         Content = c.String(nullable: false),
                         UserId = c.String(maxLength: 128),
                         IsFixed = c.Boolean(nullable: false),
@@ -246,7 +246,7 @@ namespace MyMarket.Data.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 50),
+                        Name = c.String(nullable: false, maxLength: 250),
                         CountryId = c.Int(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
                         ModifiedOn = c.DateTime(),
@@ -264,7 +264,7 @@ namespace MyMarket.Data.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 50),
+                        Name = c.String(nullable: false, maxLength: 250),
                         CreatedOn = c.DateTime(nullable: false),
                         ModifiedOn = c.DateTime(),
                         IsDeleted = c.Boolean(nullable: false),

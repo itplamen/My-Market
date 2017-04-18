@@ -131,3 +131,13 @@
     resize: none;
     height: 200px;
 }
+
+.ad-image img {
+    width: 300px;
+    height: 300px;
+}
+
+.ad-description {
+    margin-left: 20px;
+    text-align: justify;   
+}

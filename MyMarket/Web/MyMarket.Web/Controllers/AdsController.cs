@@ -76,8 +76,11 @@
             {
                 foreach (var img in createModel.OtherPictures)
                 {
-                    var savedImage = this.ProcessImage(createModel.MainPicture, imagesPath);
-                    adToCreate.Images.Add(savedImage);
+                    if (img != null)
+                    {
+                        var savedImage = this.ProcessImage(createModel.MainPicture, imagesPath);
+                        adToCreate.Images.Add(savedImage);
+                    }
                 }
             }
             
