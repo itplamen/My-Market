@@ -18,9 +18,9 @@
 
         IQueryable<Ad> AllWithDeleted();
 
-        IQueryable<Ad> Latest(int count = Constants.TopAdsCount);
+        IQueryable<Ad> Latest(int count = NativeConstants.TopAdsCount);
 
-        IQueryable<Ad> MostLiked(int count = Constants.TopAdsCount);
+        IQueryable<Ad> MostLiked(int count = NativeConstants.TopAdsCount);
 
         Ad Update(int id, Ad ad);
 
@@ -32,7 +32,7 @@
             string searchWord, 
             IEnumerable<int> categoriesIds, 
             string sortBy, string sortType, 
-            int page = Constants.AdsStartPage, 
-            int adsPerPage = Constants.AdsPerPage);
+            int page = NativeConstants.AdsStartPage, 
+            int adsPerPage = NativeConstants.AdsPerPage);
     }
 }

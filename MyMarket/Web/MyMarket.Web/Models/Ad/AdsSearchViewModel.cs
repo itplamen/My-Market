@@ -10,12 +10,12 @@
         {
             if (string.IsNullOrEmpty(this.SortBy))
             {
-                this.SortBy = Constants.AdsInitialOrderBy;
+                this.SortBy = NativeConstants.AdsInitialOrderBy;
             }
 
             if (string.IsNullOrEmpty(this.SortType))
             {
-                this.SortType = Constants.AscendingSortAds;
+                this.SortType = NativeConstants.AscendingSortAds;
             }
         }
 

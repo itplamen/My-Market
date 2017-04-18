@@ -1,13 +1,14 @@
 ﻿@using System.Globalization
 @using System.IO;
 
+@using MyMarket.Common;
 @using MyMarket.Web.Models.Ad
 
 @model AdViewModel
 
 <div class="ad-content-div">
     <a href="~/Ads/@Model.Id">
-        <img src="@Url.Content("~/Content/Images/Post/" + Path.GetFileName(Model.UrlPath))"  alt="Ad Image" />
+        <img src="@Url.Content(NativeConstants.ImagesPath + Path.GetFileName(Model.UrlPath))" alt="Ad Image" />
         <h4>@Model.Title</h4>
         <p>
             <span class="ad-price">&#8364 @Model.Price</span>

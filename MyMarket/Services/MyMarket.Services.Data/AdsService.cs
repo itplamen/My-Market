@@ -58,7 +58,7 @@
             return this.adsRepository.AllWithDeleted();
         }
 
-        public IQueryable<Ad> Latest(int count = Constants.TopAdsCount)
+        public IQueryable<Ad> Latest(int count = NativeConstants.TopAdsCount)
         {
             Guard.WhenArgument(count, nameof(count)).IsLessThanOrEqual(ValidationConstants.InvalidCount).Throw();
 
@@ -67,7 +67,7 @@
                 .Take(count);
         }
 
-        public IQueryable<Ad> MostLiked(int count = Constants.TopAdsCount)
+        public IQueryable<Ad> MostLiked(int count = NativeConstants.TopAdsCount)
         {
             Guard.WhenArgument(count, nameof(count)).IsLessThanOrEqual(ValidationConstants.InvalidCount).Throw();
 
@@ -137,15 +137,15 @@
             IEnumerable<int> categoriesIds, 
             string sortBy, 
             string sortType, 
-            int page = Constants.AdsStartPage, 
-            int adsPerPage = Constants.AdsPerPage)
+            int page = NativeConstants.AdsStartPage, 
+            int adsPerPage = NativeConstants.AdsPerPage)
         {
             Guard.WhenArgument(sortBy, nameof(sortBy)).IsNullOrEmpty().Throw();
             Guard.WhenArgument(sortType, nameof(sortType)).IsNullOrEmpty().Throw();
-            Guard.WhenArgument(page, nameof(page)).IsLessThan(Constants.AdsStartPage).Throw();
+            Guard.WhenArgument(page, nameof(page)).IsLessThan(NativeConstants.AdsStartPage).Throw();
             Guard.WhenArgument(adsPerPage, nameof(adsPerPage)).IsLessThanOrEqual(MinAdsPerPageCount).Throw();
 
-            var adsToSkip = (page - 1) * Constants.AdsPerPage;
+            var adsToSkip = (page - 1) * NativeConstants.AdsPerPage;
  
             var ads = this.BuildFilterQuery(searchWord, categoriesIds)
                 .OrderBy(sortBy + " " + sortType)
