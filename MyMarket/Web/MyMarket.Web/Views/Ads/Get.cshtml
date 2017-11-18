@@ -1,0 +1,31 @@
+﻿@using System.Globalization
+@using System.IO;
+
+@using MyMarket.Common;
+@using MyMarket.Web.Models.Ad
+
+@model AdViewModel
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<h3>@ViewBag.Title</h3>
+
+<div class="container single_top main-content">
+    @if (TempData["Addition"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["Addition"]
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-md-3 ad-image">
+            <img src="@Url.Content(NativeConstants.ImagesPath + Path.GetFileName(Model.UrlPath))" alt="Ad Image" />
+        </div>
+        <div class="col-md-9">
+            <div class="ad-description">@Html.Raw(Model.Description)</div>
+            <p>Published on: @Model.CreatedOn.ToString("dd/MMMM/yyyy", CultureInfo.InvariantCulture)</p>
+        </div>
+    </div>
+</div>

@@ -56,6 +56,10 @@
       <Project>{45C7F315-2001-4745-BFFE-E7EED16342E1}</Project>
       <Name>MyMarket.Data.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Services\MyMarket.Services.FileSystem\MyMarket.Services.FileSystem.csproj">
+      <Project>{0090e452-d41c-4b73-88ba-9271749c67cd}</Project>
+      <Name>MyMarket.Services.FileSystem</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

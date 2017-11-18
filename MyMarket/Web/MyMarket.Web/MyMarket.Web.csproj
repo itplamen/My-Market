@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -361,13 +362,13 @@
       <Project>{D07FCB5C-088D-478A-BE83-3CF7A8F633A7}</Project>
       <Name>MyMarket.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\MyMarket.Services.FileSystem\MyMarket.Services.FileSystem.csproj">
-      <Project>{0090E452-D41C-4B73-88BA-9271749C67CD}</Project>
-      <Name>MyMarket.Services.FileSystem</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\MyMarket.Services.Data\MyMarket.Services.Data.csproj">
       <Project>{54220273-9DB8-479A-9303-5DF6ECD3EECB}</Project>
       <Name>MyMarket.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\MyMarket.Services.FileSystem\MyMarket.Services.FileSystem.csproj">
+      <Project>{0090E452-D41C-4B73-88BA-9271749C67CD}</Project>
+      <Name>MyMarket.Services.FileSystem</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\MyMarket.Services.Web\MyMarket.Services.Web.csproj">
       <Project>{8fd8ee0d-dfb8-47af-8e81-f015b104ad00}</Project>

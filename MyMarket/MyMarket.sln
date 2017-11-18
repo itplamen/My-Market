@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D0487FFF-C778-416B-9D69-A78F3C9D8E31}"
 EndProject
@@ -31,7 +31,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{E59B5A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMarket.Common", "Common\MyMarket.Common\MyMarket.Common.csproj", "{250CED89-3811-4CE2-9817-C9C814E4001F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMarket.Services.FileSystem", "MyMarket.Services.FileSystem\MyMarket.Services.FileSystem.csproj", "{0090E452-D41C-4B73-88BA-9271749C67CD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMarket.Services.FileSystem", "Services\MyMarket.Services.FileSystem\MyMarket.Services.FileSystem.csproj", "{0090E452-D41C-4B73-88BA-9271749C67CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,5 +89,8 @@ Global
 		{8FD8EE0D-DFB8-47AF-8E81-F015B104AD00} = {90F66DD6-4A47-4E29-A49A-0D25DEB19F00}
 		{250CED89-3811-4CE2-9817-C9C814E4001F} = {E59B5A2B-E435-410E-BE5E-3717D6B068F3}
 		{0090E452-D41C-4B73-88BA-9271749C67CD} = {90F66DD6-4A47-4E29-A49A-0D25DEB19F00}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {67AA3D25-393B-4BAA-A920-772A2BC28B6F}
 	EndGlobalSection
 EndGlobal
