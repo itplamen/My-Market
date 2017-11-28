@@ -29,7 +29,11 @@
         private readonly IFileSystemService fileSystemService;
         private readonly IImagesService imagesService;
 
-        public AdsController(IAdsService adsService, ICategoriesService categoriesService, IFileSystemService fileSystemService, IImagesService imagesService)
+        public AdsController(
+            IAdsService adsService, 
+            ICategoriesService categoriesService, 
+            IFileSystemService fileSystemService, 
+            IImagesService imagesService)
         {
             Guard.WhenArgument(adsService, nameof(adsService)).IsNull().Throw();
             Guard.WhenArgument(categoriesService, nameof(categoriesService)).IsNull().Throw();
@@ -46,7 +50,10 @@
         [Authorize]
         public ActionResult Post()
         {
-            return this.View(new AdCreateViewModel() { Categories = this.GetCategories() });
+            return this.View(new AdCreateViewModel()
+            {
+                Categories = this.GetCategories()
+            });
         }
 
         [HttpPost]

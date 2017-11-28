@@ -26,8 +26,7 @@
         public string Description { get; set; }
 
         [Required]
-        [Range(0, int.MaxValue)]
-        [DataType(DataType.Currency, ErrorMessage = "Invalid price format. E.g. 20.99, 11.00, 9")]
+        [DisplayFormat(DataFormatString = "{0:F2}", ApplyFormatInEditMode = true)]
         public decimal Price { get; set; }
 
         [Required]
