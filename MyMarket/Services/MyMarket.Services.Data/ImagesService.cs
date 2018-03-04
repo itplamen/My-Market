@@ -32,14 +32,14 @@
 
         public Image Get(int id)
         {
-            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.InvalidId).Throw();
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.INVALID_ID).Throw();
 
             return this.imagesRepository.GetById(id);
         }
 
         public IQueryable<Image> GetAsQueryable(int id)
         {
-            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.InvalidId).Throw();
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.INVALID_ID).Throw();
 
             return this.imagesRepository.All()
                 .Where(i => i.Id == id);
@@ -57,7 +57,7 @@
 
         public Image Update(int id, Image image)
         {
-            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.InvalidId).Throw();
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.INVALID_ID).Throw();
             Guard.WhenArgument(image, nameof(image)).IsNull().Throw();
 
             var imageToUpdate = this.imagesRepository.GetById(id);
@@ -80,7 +80,7 @@
 
         public Image Delete(int id)
         {
-            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.InvalidId).Throw();
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.INVALID_ID).Throw();
 
             var imageToDelete = this.imagesRepository.GetById(id);
 
@@ -95,7 +95,7 @@
 
         public bool HardDelete(int id)
         {
-            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.InvalidId).Throw();
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.INVALID_ID).Throw();
 
             var imageToDelete = this.imagesRepository.GetById(id);
 

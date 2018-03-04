@@ -16,8 +16,8 @@
 
         [Required]
         [Index(IsUnique = true)]
-        [MinLength(ValidationConstants.NameMinLength)]
-        [MaxLength(ValidationConstants.NameMaxLenght)]
+        [MinLength(ValidationConstants.NAME_MIN_LENGTH)]
+        [MaxLength(ValidationConstants.NAME_MAX_LENGTH)]
         public string Name { get; set; }
 
         public ICollection<City> Cities { get; set; }

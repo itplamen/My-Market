@@ -32,7 +32,7 @@
             string searchWord, 
             IEnumerable<int> categoriesIds, 
             string sortBy, string sortType, 
-            int page = NativeConstants.AdsStartPage, 
+            int page = NativeConstants.ADS_START_PAGE, 
             int adsPerPage = NativeConstants.AdsPerPage);
     }
 }

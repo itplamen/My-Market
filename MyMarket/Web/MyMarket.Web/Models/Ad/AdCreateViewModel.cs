@@ -14,18 +14,19 @@
     public class AdCreateViewModel : IMapFrom<Ad>
     {
         [Required]
-        [AllowHtml]
-        [MinLength(ValidationConstants.NameMinLength)]
-        [MaxLength(ValidationConstants.NameMaxLenght)]
+        [MinLength(ValidationConstants.NAME_MIN_LENGTH)]
+        [MaxLength(ValidationConstants.NAME_MAX_LENGTH)]
         public string Title { get; set; }
 
         [Required]
         [AllowHtml]
         [DataType(DataType.MultilineText)]
-        [MinLength(ValidationConstants.ContentMinLength)]
+        [MinLength(ValidationConstants.CONTENT_MIN_LENGTH)]
+        [MaxLength(ValidationConstants.CONTENT_MAX_LENGTH)]
         public string Description { get; set; }
 
         [Required]
+        [Range(0, int.MaxValue)]
         [DisplayFormat(DataFormatString = "{0:F2}", ApplyFormatInEditMode = true)]
         public decimal Price { get; set; }
 
@@ -35,6 +36,7 @@
 
         public IEnumerable<CategoryViewModel> Categories { get; set; }
 
+        [Required]
         [Display(Name = "Main Picture")]
         [CustomValidation(typeof(AdImageValidator), "ValidateImage")]
         public HttpPostedFileBase MainPicture { get; set; }

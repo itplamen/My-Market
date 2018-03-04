@@ -32,14 +32,14 @@
 
         public Feedback Get(int id)
         {
-            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.InvalidId).Throw();
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.INVALID_ID).Throw();
 
             return this.feedbacksRepository.GetById(id);
         }
 
         public IQueryable<Feedback> GetAsQueryable(int id)
         {
-            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.InvalidId).Throw();
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.INVALID_ID).Throw();
 
             return this.feedbacksRepository.All().Where(f => f.Id == id);
         }
@@ -56,7 +56,7 @@
 
         public Feedback Update(int id, Feedback feedback)
         {
-            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.InvalidId).Throw();
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.INVALID_ID).Throw();
             Guard.WhenArgument(feedback, nameof(feedback)).IsNull().Throw();
 
             var feedbackToUpdate = this.feedbacksRepository.GetById(id);
@@ -79,7 +79,7 @@
 
         public Feedback Delete(int id)
         {
-            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.InvalidId).Throw();
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.INVALID_ID).Throw();
 
             var feedbackToDelete = this.feedbacksRepository.GetById(id);
 
@@ -94,7 +94,7 @@
 
         public bool HardDelete(int id)
         {
-            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.InvalidId).Throw();
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.INVALID_ID).Throw();
 
             var feedbackToDelete = this.feedbacksRepository.GetById(id);
 

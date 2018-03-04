@@ -34,17 +34,17 @@
         {
             if (image != null && !IsImage(image))
             {
-                var allowedTypes = ValidationConstants.JpgImage + ", " + ValidationConstants.PngImage + ", " + 
-                    ValidationConstants.GifImage + ", " + ValidationConstants.JpegImage;
-                return new ValidationResult(string.Format(ErrorMessages.InvalidImageType, allowedTypes));
+                var allowedTypes = ValidationConstants.JPG_IMAGE + ", " + ValidationConstants.PNG_IMAGE + ", " + 
+                    ValidationConstants.GIF_IMAGE + ", " + ValidationConstants.JPEG_IMAGE;
+                return new ValidationResult(string.Format(ErrorMessages.INVALID_IMAGE_TYPE, allowedTypes));
             }
 
-            if (image == null || (image != null && image.ContentLength <= ValidationConstants.AdImageContentLengthInBytes))
+            if (image == null || (image != null && image.ContentLength <= ValidationConstants.AD_IMAGE_CONTENT_LENGTH_IN_BYTES))
             {
                 return ValidationResult.Success;
             }
 
-            return new ValidationResult(string.Format(ErrorMessages.InvalidImageSize, ValidationConstants.AdImageContentLengthInKilobytes));
+            return new ValidationResult(string.Format(ErrorMessages.INVALID_IMAGE_SIZE, ValidationConstants.AD_IMAGE_CONTENT_LENGTH_IN_KILOBYTES));
         }
 
         private static bool IsImage(HttpPostedFileBase file)
@@ -56,10 +56,10 @@
 
             string[] formats = new string[]
             {
-                ValidationConstants.JpgImage,
-                ValidationConstants.PngImage, 
-                ValidationConstants.GifImage,
-                ValidationConstants.JpegImage
+                ValidationConstants.JPG_IMAGE,
+                ValidationConstants.PNG_IMAGE, 
+                ValidationConstants.GIF_IMAGE,
+                ValidationConstants.JPEG_IMAGE
             };
 
             return formats.Any(x => file.FileName.EndsWith(x, StringComparison.OrdinalIgnoreCase));

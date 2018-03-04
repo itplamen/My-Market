@@ -8,11 +8,11 @@
     public abstract class FileInfo : BaseModel<int>
     {
         [Required]
-        [MaxLength(ValidationConstants.MaxOriginalFileNameLength)]
+        [MaxLength(ValidationConstants.MAX_ORIGINAL_FILE_NAME_LENGTH)]
         public string OriginalFileName { get; set; }
 
         [Required]
-        [MaxLength(ValidationConstants.MaxFileExtensionLength)]
+        [MaxLength(ValidationConstants.MAX_FILE_EXTENSION_LENGTH)]
         public string FileExtension { get; set; }
 
         public string UrlPath { get; set; }

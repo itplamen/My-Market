@@ -19,13 +19,13 @@
         }
 
         [Required]
-        [MinLength(ValidationConstants.NameMinLength)]
-        [MaxLength(ValidationConstants.NameMaxLenght)]
+        [MinLength(ValidationConstants.NAME_MIN_LENGTH)]
+        [MaxLength(ValidationConstants.NAME_MAX_LENGTH)]
         public string Title { get; set; }
 
         [Required]
-        [MinLength(ValidationConstants.ContentMinLength)]
-        [MaxLength(ValidationConstants.ContentMaxLength)]
+        [MinLength(ValidationConstants.CONTENT_MIN_LENGTH)]
+        [MaxLength(ValidationConstants.CONTENT_MAX_LENGTH)]
         public string Description { get; set; }
 
         public int? MainImageId { get; set; }

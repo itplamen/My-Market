@@ -35,14 +35,14 @@
 
         public Ad Get(int id)
         {
-            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.InvalidId).Throw();
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.INVALID_ID).Throw();
 
             return this.adsRepository.GetById(id);
         }
 
         public IQueryable<Ad> GetAsQueryable(int id)
         {
-            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.InvalidId).Throw();
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.INVALID_ID).Throw();
 
             return this.adsRepository.All()
                 .Where(a => a.Id == id);
@@ -60,7 +60,7 @@
 
         public IQueryable<Ad> Latest(int count = NativeConstants.TopAdsCount)
         {
-            Guard.WhenArgument(count, nameof(count)).IsLessThanOrEqual(ValidationConstants.InvalidCount).Throw();
+            Guard.WhenArgument(count, nameof(count)).IsLessThanOrEqual(ValidationConstants.INVALID_COUNT).Throw();
 
             return this.adsRepository.All()
                 .OrderByDescending(a => a.CreatedOn)
@@ -69,7 +69,7 @@
 
         public IQueryable<Ad> MostLiked(int count = NativeConstants.TopAdsCount)
         {
-            Guard.WhenArgument(count, nameof(count)).IsLessThanOrEqual(ValidationConstants.InvalidCount).Throw();
+            Guard.WhenArgument(count, nameof(count)).IsLessThanOrEqual(ValidationConstants.INVALID_COUNT).Throw();
 
             return this.adsRepository.All()
                 .OrderByDescending(a => a.Likes.Count)
@@ -78,7 +78,7 @@
 
         public Ad Update(int id, Ad ad)
         {
-            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.InvalidId).Throw();
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.INVALID_ID).Throw();
             Guard.WhenArgument(ad, nameof(ad)).IsNull().Throw();
 
             var adToUpdate = this.adsRepository.GetById(id);
@@ -102,7 +102,7 @@
 
         public Ad Delete(int id)
         {
-            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.InvalidId).Throw();
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.INVALID_ID).Throw();
 
             var adToDelete = this.adsRepository.GetById(id);
 
@@ -117,7 +117,7 @@
 
         public bool HardDelete(int id)
         {
-            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.InvalidId).Throw();
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.INVALID_ID).Throw();
 
             var adToDelete = this.adsRepository.GetById(id);
 
@@ -137,12 +137,12 @@
             IEnumerable<int> categoriesIds, 
             string sortBy, 
             string sortType, 
-            int page = NativeConstants.AdsStartPage, 
+            int page = NativeConstants.ADS_START_PAGE, 
             int adsPerPage = NativeConstants.AdsPerPage)
         {
             Guard.WhenArgument(sortBy, nameof(sortBy)).IsNullOrEmpty().Throw();
             Guard.WhenArgument(sortType, nameof(sortType)).IsNullOrEmpty().Throw();
-            Guard.WhenArgument(page, nameof(page)).IsLessThan(NativeConstants.AdsStartPage).Throw();
+            Guard.WhenArgument(page, nameof(page)).IsLessThan(NativeConstants.ADS_START_PAGE).Throw();
             Guard.WhenArgument(adsPerPage, nameof(adsPerPage)).IsLessThanOrEqual(MinAdsPerPageCount).Throw();
 
             var adsToSkip = (page - 1) * NativeConstants.AdsPerPage;

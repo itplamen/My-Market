@@ -9,11 +9,11 @@
     public class Feedback : BaseModel<int>
     {
         [Required]
-        [MaxLength(ValidationConstants.NameMaxLenght)]
+        [MaxLength(ValidationConstants.NAME_MAX_LENGTH)]
         public string Name { get; set; }
 
         [EmailAddress]
-        [MaxLength(ValidationConstants.NameMaxLenght)]
+        [MaxLength(ValidationConstants.NAME_MAX_LENGTH)]
         public string Email { get; set; }
 
         [Required]

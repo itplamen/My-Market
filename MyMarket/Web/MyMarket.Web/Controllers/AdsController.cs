@@ -30,9 +30,9 @@
         private readonly IImagesService imagesService;
 
         public AdsController(
-            IAdsService adsService, 
-            ICategoriesService categoriesService, 
-            IFileSystemService fileSystemService, 
+            IAdsService adsService,
+            ICategoriesService categoriesService,
+            IFileSystemService fileSystemService,
             IImagesService imagesService)
         {
             Guard.WhenArgument(adsService, nameof(adsService)).IsNull().Throw();
@@ -64,37 +64,19 @@
             if (!this.ModelState.IsValid)
             {
                 createModel.Categories = this.GetCategories();
-
                 return this.View(createModel);
             }
 
-            var adToCreate = Mapper.Map<Ad>(createModel);
+            Image mainImage = this.ProcessImage(createModel.MainPicture);
+
+            Ad adToCreate = Mapper.Map<Ad>(createModel);
             adToCreate.UserId = this.User.Identity.GetUserId();
+            adToCreate.MainImageId = mainImage.Id;
+            adToCreate.Images = this.ProcessImages(createModel.OtherPictures);
 
-            var imagesPath = this.Server.MapPath(NativeConstants.ImagesPath);
+            int adId = this.adsService.Add(adToCreate);
 
-            if (createModel.MainPicture != null)
-            {
-                var savedImage = this.ProcessImage(createModel.MainPicture, imagesPath);
-                adToCreate.MainImageId = savedImage.Id;
-            }
-
-            if (createModel.OtherPictures != null && createModel.OtherPictures.Any())
-            {
-                foreach (var img in createModel.OtherPictures)
-                {
-                    if (img != null)
-                    {
-                        var savedImage = this.ProcessImage(createModel.MainPicture, imagesPath);
-                        adToCreate.Images.Add(savedImage);
-                    }
-                }
-            }
-            
-            this.adsService.Add(adToCreate);
-
-            // TODO: Redirect to Ads/{id}
-            return RedirectToAction("Index");
+            return RedirectToAction($"{adId}");
         }
 
         [HttpGet]
@@ -106,7 +88,7 @@
         [HttpGet]
         public ActionResult Get(int id)
         {
-            if (id <= ValidationConstants.InvalidId)
+            if (id <= ValidationConstants.INVALID_ID)
             {
                 return this.View("AdError");
             }
@@ -127,27 +109,28 @@
         [ChildActionOnly]
         public ActionResult InitialAds()
         {
-            return this.Search(new AdsSearchViewModel(), NativeConstants.AdsStartPage);
+            return this.Search(new AdsSearchViewModel(), NativeConstants.ADS_START_PAGE);
         }
 
         [HttpPost]
         [AjaxOnly]
         public PartialViewResult SearchAds(AdsSearchViewModel searchModel, int? page)
         {
-            int actualPage = page ?? NativeConstants.AdsStartPage;
-            Guard.WhenArgument(actualPage, nameof(actualPage)).IsLessThan(NativeConstants.AdsStartPage).Throw();
+            int actualPage = page ?? NativeConstants.ADS_START_PAGE;
+            Guard.WhenArgument(actualPage, nameof(actualPage)).IsLessThan(NativeConstants.ADS_START_PAGE).Throw();
 
             return this.Search(searchModel, actualPage);
         }
 
         private PartialViewResult Search(AdsSearchViewModel search, int page)
         {
-            Guard.WhenArgument(page, nameof(page)).IsLessThan(NativeConstants.AdsStartPage).Throw();
+            Guard.WhenArgument(page, nameof(page)).IsLessThan(NativeConstants.ADS_START_PAGE).Throw();
 
-            var allAdsCount = this.adsService.All().Count();
-            var totalPages = (int)Math.Ceiling(allAdsCount / (decimal)NativeConstants.AdsPerPage);
+            int allAdsCount = this.adsService.All().Count();
+            int totalPages = (int)Math.Ceiling(allAdsCount / (decimal)NativeConstants.AdsPerPage);
 
-            var ads = this.adsService.Search(search.SearchWord, search.ChosenCategoriesIds, search.SortBy, search.SortType, page)
+            var ads = this.adsService
+                .Search(search.SearchWord, search.ChosenCategoriesIds, search.SortBy, search.SortType, page)
                 .To<AdViewModel>()
                 .ToList();
 
@@ -172,26 +155,37 @@
                 15 * 60);
         }
 
-        private Image ProcessImage(HttpPostedFileBase image, string imagesPath)
+        private ICollection<Image> ProcessImages(IEnumerable<HttpPostedFileBase> images)
         {
-            var urlPath = this.fileSystemService.SaveImage(image, imagesPath);
-            var fileName = image.FileName;
+            ICollection<Image> result = new List<Image>();
 
-            return this.SaveImage(Path.GetExtension(fileName), fileName, urlPath);
+            foreach (var image in images)
+            {
+                if (image != null)
+                {
+                    Image savedImage = this.ProcessImage(image);
+                    result.Add(savedImage);
+                }
+            }
+
+            return result;
         }
 
-        private Image SaveImage(string fileExtension, string originalFileName, string urlPath)
+        private Image ProcessImage(HttpPostedFileBase image)
         {
-            var image = new Image()
+            string path = this.Server.MapPath(NativeConstants.IMAGES_PATH);
+            string urlPath = this.fileSystemService.SaveImage(image, path);
+
+            var imageToSave = new Image()
             {
-                FileExtension = fileExtension,
-                OriginalFileName = originalFileName,
+                FileExtension = Path.GetExtension(image.FileName),
+                OriginalFileName = image.FileName,
                 UrlPath = urlPath
             };
 
-            this.imagesService.Add(image);
+            this.imagesService.Add(imageToSave);
 
-            return image;
+            return imageToSave;
         }
     }
 }
