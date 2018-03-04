@@ -1,4 +1,4 @@
-﻿namespace MyMarket.Web.Models.Validation
+﻿namespace MyMarket.Common.Validators
 {
     using System;
     using System.Collections.Generic;
@@ -17,14 +17,14 @@
 
         public static ValidationResult ValidateImages(IEnumerable<HttpPostedFileBase> images)
         {
-            foreach (var img in images)
+            foreach (var image in images)
             {
-                var invalidModelResult = Validate(img);
+                ValidationResult validationResult = Validate(image);
 
-                if (invalidModelResult != null && !string.IsNullOrEmpty(invalidModelResult.ErrorMessage))
+                if (validationResult != null && !string.IsNullOrEmpty(validationResult.ErrorMessage))
                 {
-                    return invalidModelResult;
-                }    
+                    return validationResult;
+                }
             }
 
             return ValidationResult.Success;
@@ -34,8 +34,9 @@
         {
             if (image != null && !IsImage(image))
             {
-                var allowedTypes = ValidationConstants.JPG_IMAGE + ", " + ValidationConstants.PNG_IMAGE + ", " + 
+                string allowedTypes = ValidationConstants.JPG_IMAGE + ", " + ValidationConstants.PNG_IMAGE + ", " +
                     ValidationConstants.GIF_IMAGE + ", " + ValidationConstants.JPEG_IMAGE;
+
                 return new ValidationResult(string.Format(ErrorMessages.INVALID_IMAGE_TYPE, allowedTypes));
             }
 
@@ -44,7 +45,8 @@
                 return ValidationResult.Success;
             }
 
-            return new ValidationResult(string.Format(ErrorMessages.INVALID_IMAGE_SIZE, ValidationConstants.AD_IMAGE_CONTENT_LENGTH_IN_KILOBYTES));
+            string errorMessage = string.Format(ErrorMessages.INVALID_IMAGE_SIZE, ValidationConstants.AD_IMAGE_CONTENT_LENGTH_IN_KILOBYTES);
+            return new ValidationResult(errorMessage);
         }
 
         private static bool IsImage(HttpPostedFileBase file)
@@ -57,7 +59,7 @@
             string[] formats = new string[]
             {
                 ValidationConstants.JPG_IMAGE,
-                ValidationConstants.PNG_IMAGE, 
+                ValidationConstants.PNG_IMAGE,
                 ValidationConstants.GIF_IMAGE,
                 ValidationConstants.JPEG_IMAGE
             };

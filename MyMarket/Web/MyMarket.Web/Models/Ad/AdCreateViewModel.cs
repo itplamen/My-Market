@@ -7,9 +7,9 @@
 
     using Category;
     using Common;
+    using Common.Validators;
     using Data.Models;
     using Infrastructure.Mapping;
-    using Validation;
 
     public class AdCreateViewModel : IMapFrom<Ad>
     {
