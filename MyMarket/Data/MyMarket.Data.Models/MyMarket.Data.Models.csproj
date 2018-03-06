@@ -61,7 +61,6 @@
     <Compile Include="Category.cs" />
     <Compile Include="City.cs" />
     <Compile Include="Comment.cs" />
-    <Compile Include="CommentFlag.cs" />
     <Compile Include="Country.cs" />
     <Compile Include="Feedback.cs" />
     <Compile Include="FileInfo.cs" />

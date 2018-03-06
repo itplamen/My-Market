@@ -24,8 +24,6 @@
 
         public virtual IDbSet<Comment> Comments { get; set; }
 
-        public virtual IDbSet<CommentFlag> CommentFlags { get; set; }
-
         public virtual IDbSet<Country> Countries { get; set; }
 
         public virtual IDbSet<Feedback> Feedbacks { get; set; }
