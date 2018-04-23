@@ -53,6 +53,10 @@
                     }
                 </div>
             }
+            else
+            {
+                @Html.Partial("_UnauthorizedUserPartial", "Please log into your acount in order to comment the ad.")
+            }
 
             <div id="Comments">
                 @foreach (var comment in Model.Comments)
