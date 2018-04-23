@@ -25,7 +25,39 @@
         </div>
         <div class="col-md-9">
             <div class="ad-description">@Html.Raw(Model.Description)</div>
-            <p>Published on: @Model.CreatedOn.ToString("dd/MMMM/yyyy", CultureInfo.InvariantCulture)</p>
+            <p class="published-ad">Published on: @Model.CreatedOn.ToString("dd/MMMM/yyyy", CultureInfo.InvariantCulture)</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group">
+            <h5>@Model.Comments.Count() Comments</h5>
+
+            @if (this.User.Identity.IsAuthenticated)
+            {
+                <div id="PostCommentDiv">
+                    @using (this.Ajax.BeginForm("AddComment", null,
+                        new AjaxOptions()
+                        {
+                            HttpMethod = "POST"
+                        },
+                        new { }))
+                        {
+                            <div>
+                                <textarea id="PostComment" maxlength="1000" name="content" placeholder="Add a comment..."></textarea>
+                                <input type="hidden" name="adId" value="@Model.Id" />
+                                <input type="submit" class="btn btn-primary post-comment-button" value="Comment" />
+                            </div>
+                        }
+                </div>
+            }
+
+            @foreach (var comment in Model.Comments)
+            {
+                <span class="comment-title">@comment.Username</span>
+                <span class="glyphicon glyphicon-calendar comment-date"></span>@comment.Date.ToString("dd/MMMM/yyyy HH:mm", CultureInfo.InvariantCulture)
+                <p class="comment-content">@comment.Content</p>
+            }
         </div>
     </div>
 </div>

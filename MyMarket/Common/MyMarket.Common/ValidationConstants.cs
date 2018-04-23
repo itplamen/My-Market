@@ -8,7 +8,7 @@
         public const int NAME_MIN_LENGTH = 2;
         public const int NAME_MAX_LENGTH = 250;
         public const int CONTENT_MIN_LENGTH = 2;
-        public const int CONTENT_MAX_LENGTH = 4096;
+        public const int CONTENT_MAX_LENGTH = 66664096;
 
         // Ads
         public const int AD_IMAGE_CONTENT_LENGTH_IN_KILOBYTES = 300;

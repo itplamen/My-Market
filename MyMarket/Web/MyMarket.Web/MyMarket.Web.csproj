@@ -252,6 +252,7 @@
     <Compile Include="Models\Ad\AdsSearchResultViewModel.cs" />
     <Compile Include="Models\Ad\AdViewModel.cs" />
     <Compile Include="Models\Category\CategoryViewModel.cs" />
+    <Compile Include="Models\Comments\CommentViewModel.cs" />
     <Compile Include="Models\Home\SelectedAdsViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

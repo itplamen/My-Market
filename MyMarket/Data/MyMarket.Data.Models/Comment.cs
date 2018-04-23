@@ -19,9 +19,6 @@
         [ForeignKey("AdId")]
         public virtual Ad Ad { get; set; }
 
-        /// <summary>
-        /// If UserId is null, therefore an anonymous user has made that comment.
-        /// </summary>
         public string UserId { get; set; }
 
         public virtual User User { get; set; }

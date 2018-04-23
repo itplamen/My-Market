@@ -139,5 +139,41 @@
 
 .ad-description {
     margin-left: 20px;
-    text-align: justify;   
+    text-align: justify;
+    word-wrap: break-word;
+}
+
+.published-ad {
+    font-weight: bold;
+}
+
+.comment-title {
+    font-weight: bold;
+    font-size: 15px;
+    display: block;
+}
+
+.comment-date {
+    margin-right: 5px;
+}
+
+.comment-content {
+    word-wrap: break-word;
+}
+
+.post-comment-button {
+    position: relative;
+    top: 10px;
+    left: 405px;
+}
+
+#PostCommentDiv {
+    margin-bottom: 30px;
+}
+
+#PostComment {
+    width: 500px;
+    height: 100px;
+    display: block;
+    resize: none;
 }

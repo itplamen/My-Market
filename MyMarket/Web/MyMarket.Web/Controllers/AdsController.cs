@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.IO;
+    using System.Net;
     using System.Web;
     using System.Web.Mvc;
 
@@ -28,22 +29,26 @@
         private readonly ICategoriesService categoriesService;
         private readonly IFileSystemService fileSystemService;
         private readonly IImagesService imagesService;
+        private readonly ICommentsService commentsService;
 
         public AdsController(
             IAdsService adsService,
             ICategoriesService categoriesService,
             IFileSystemService fileSystemService,
-            IImagesService imagesService)
+            IImagesService imagesService,
+            ICommentsService commentsService)
         {
             Guard.WhenArgument(adsService, nameof(adsService)).IsNull().Throw();
             Guard.WhenArgument(categoriesService, nameof(categoriesService)).IsNull().Throw();
             Guard.WhenArgument(fileSystemService, nameof(fileSystemService)).IsNull().Throw();
             Guard.WhenArgument(imagesService, nameof(imagesService)).IsNull().Throw();
+            Guard.WhenArgument(commentsService, nameof(commentsService)).IsNull().Throw();
 
             this.adsService = adsService;
             this.categoriesService = categoriesService;
             this.fileSystemService = fileSystemService;
             this.imagesService = imagesService;
+            this.commentsService = commentsService;
         }
 
         [HttpGet]
@@ -120,6 +125,22 @@
             Guard.WhenArgument(actualPage, nameof(actualPage)).IsLessThan(NativeConstants.ADS_START_PAGE).Throw();
 
             return this.Search(searchModel, actualPage);
+        }
+
+        [HttpPost]
+        [AjaxOnly]
+        public ActionResult AddComment(string content, int adId)
+        {
+            var comment = new Comment()
+            {
+                Content = content,
+                AdId = adId,
+                UserId = this.User.Identity.GetUserId()
+            };
+
+            this.commentsService.Add(comment);
+
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
         private PartialViewResult Search(AdsSearchViewModel search, int page)

@@ -67,8 +67,10 @@
   <ItemGroup>
     <Compile Include="AdsService.cs" />
     <Compile Include="CategoriesService.cs" />
+    <Compile Include="CommentsService.cs" />
     <Compile Include="Contracts\IAdsService.cs" />
     <Compile Include="Contracts\ICategoriesService.cs" />
+    <Compile Include="Contracts\ICommentsService.cs" />
     <Compile Include="Contracts\IFeedbacksService.cs" />
     <Compile Include="Contracts\IImagesService.cs" />
     <Compile Include="FeedbacksService.cs" />
