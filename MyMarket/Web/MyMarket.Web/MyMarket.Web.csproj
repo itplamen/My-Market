@@ -331,6 +331,7 @@
     <Content Include="Views\Shared\_AdsPartial.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\AdViewModel.cshtml" />
     <Content Include="Views\Ads\Post.cshtml" />
+    <Content Include="Views\Shared\_CommentPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

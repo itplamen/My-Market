@@ -1,0 +1,9 @@
+﻿@using System.Globalization
+
+@using MyMarket.Web.Models.Comments
+
+@model CommentViewModel
+
+<span class="comment-title">@Model.Username</span>
+<span class="glyphicon glyphicon-calendar comment-date"></span>@Model.Date.ToString("dd/MMMM/yyyy HH:mm", CultureInfo.InvariantCulture)
+<p class="comment-content">@Model.Content</p>

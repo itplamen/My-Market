@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.IO;
-    using System.Net;
     using System.Web;
     using System.Web.Mvc;
 
@@ -22,6 +21,7 @@
     using Models.Category;
     using Services.Data.Contracts;
     using Services.FileSystem.Contracts;
+    using MyMarket.Web.Models.Comments;
 
     public class AdsController : BaseController
     {
@@ -129,7 +129,7 @@
 
         [HttpPost]
         [AjaxOnly]
-        public ActionResult AddComment(string content, int adId)
+        public PartialViewResult AddComment(string content, int adId)
         {
             var comment = new Comment()
             {
@@ -140,7 +140,10 @@
 
             this.commentsService.Add(comment);
 
-            return new HttpStatusCodeResult(HttpStatusCode.OK);
+            var viewModel = Mapper.Map<CommentViewModel>(comment);
+            viewModel.Username = this.User.Identity.Name;
+
+            return this.PartialView("_CommentPartial", viewModel);
         }
 
         private PartialViewResult Search(AdsSearchViewModel search, int page)
