@@ -39,7 +39,7 @@
                 .ForMember(x => x.Category, opt => opt.MapFrom(x => x.Category.Name))
                 .ForMember(x => x.Visits, opt => opt.MapFrom(x => x.Visits.Count))
                 .ForMember(x => x.Likes, opt => opt.MapFrom(x => x.Likes.Count))
-                .ForMember(x => x.Comments, opt => opt.MapFrom(x => x.Comments.OrderByDescending(y => y.CreatedOn)));
+                .ForMember(x => x.Comments, opt => opt.MapFrom(x => x.Comments.Where(y => !y.IsDeleted).OrderByDescending(y => y.CreatedOn)));
         }
     }
 }
