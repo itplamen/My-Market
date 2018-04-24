@@ -4,35 +4,37 @@
 
 @model CommentViewModel
 
-<div>
+<div id="Comment-@Model.Id">
     <span class="comment-title">@Model.Username</span>
 
     @if (Model.Username == this.User.Identity.Name)
     {
         <span class="eidt-delete-comment">
             <a data-ajax="true"
-               data-ajax-method="POST"
-               data-ajax-mode="replace"
-               data-ajax-update="#Comments"
-               href="/Comments/Edit?id=@Model.Id">
-                <span class="glyphicon glyphicon-edit edit-comment" title="Edit"></span>
-            </a>
+                   data-ajax-method="POST"
+                   data-ajax-mode="replace"
+                   data-ajax-update="#Comments"
+                   href="/Comments/Edit?id=@Model.Id">
+                    <span class="glyphicon glyphicon-edit edit-comment" title="Edit"></span>
+                </a>
 
             <a data-ajax="true"
                data-ajax-method="POST"
-               data-ajax-mode="InsertBefore "
-               data-ajax-update="#Comments"
+               data-ajax-mode="InsertAfter"
+               data-ajax-update="#Comment-@Model.Id"
                href="/Comments/Delete?id=@Model.Id">
                 <span class="glyphicon glyphicon-remove-circle" title="Delete"></span>
             </a>
         </span>
     }
+
+    <div>
+        @if (!string.IsNullOrEmpty(Model.Username))
+        {
+            <span class="glyphicon glyphicon-calendar comment-date"></span>
+            @Model.Date.ToString("dd/MMMM/yyyy HH:mm", CultureInfo.InvariantCulture)
+
+            <p class="comment-content">@Model.Content</p>
+        }
+    </div>
 </div>
-
-@if (!string.IsNullOrEmpty(Model.Username))
-{
-    <span class="glyphicon glyphicon-calendar comment-date"></span>
-    @Model.Date.ToString("dd/MMMM/yyyy HH:mm", CultureInfo.InvariantCulture)
-
-    <p class="comment-content">@Model.Content</p>
-}

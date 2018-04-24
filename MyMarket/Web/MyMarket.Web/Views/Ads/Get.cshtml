@@ -41,6 +41,7 @@
                     {
                         HttpMethod = "POST",
                         UpdateTargetId = "Comments",
+                        OnComplete = "onAjaxRequestComplete",
                         InsertionMode = InsertionMode.InsertBefore
                     },
                     new { }))
@@ -67,3 +68,11 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        function onAjaxRequestComplete() {
+            $('#PostComment').val('');
+        }
+    </script>
+}

@@ -5,6 +5,7 @@ using AutoMapper;
 using Bytes2you.Validation;
 
 using Microsoft.AspNet.Identity;
+
 using MyMarket.Data.Models;
 using MyMarket.Services.Data.Contracts;
 using MyMarket.Web.Attributes;
