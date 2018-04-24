@@ -9,5 +9,7 @@
         int Add(Comment comment);
 
         IQueryable<Comment> All();
+
+        Comment Delete(int id);
     }
 }

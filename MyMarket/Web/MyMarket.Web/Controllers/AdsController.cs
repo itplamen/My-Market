@@ -146,6 +146,15 @@
             return this.PartialView("_CommentPartial", viewModel);
         }
 
+        [HttpPost]
+        [AjaxOnly]
+        public PartialViewResult DeleteComment(int id)
+        {
+            this.commentsService.Delete(id);
+
+            return this.PartialView("_CommentPartial", new CommentViewModel());
+        }
+
         private PartialViewResult Search(AdsSearchViewModel search, int page)
         {
             Guard.WhenArgument(page, nameof(page)).IsLessThan(NativeConstants.ADS_START_PAGE).Throw();

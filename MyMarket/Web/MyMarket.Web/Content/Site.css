@@ -150,7 +150,7 @@
 .comment-title {
     font-weight: bold;
     font-size: 15px;
-    display: block;
+    
 }
 
 .comment-date {
@@ -176,4 +176,13 @@
     height: 100px;
     display: block;
     resize: none;
+}
+
+.eidt-delete-comment {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.eidt-delete-comment span {
+    padding-right: 5px;
 }

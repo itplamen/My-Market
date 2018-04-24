@@ -37,13 +37,13 @@
             {
                 <div id="PostCommentDiv">
                     @using (this.Ajax.BeginForm("AddComment", null,
-                new AjaxOptions()
-                {
-                    HttpMethod = "POST",
-                    UpdateTargetId = "Comments",
-                    InsertionMode = InsertionMode.InsertBefore
-                },
-                new { }))
+                    new AjaxOptions()
+                    {
+                        HttpMethod = "POST",
+                        UpdateTargetId = "Comments",
+                        InsertionMode = InsertionMode.InsertBefore
+                    },
+                    new { }))
                     {
                         <div>
                             <textarea id="PostComment" maxlength="1000" name="content" placeholder="Add a comment..."></textarea>
@@ -55,7 +55,7 @@
             }
             else
             {
-                @Html.Partial("_UnauthorizedUserPartial", "Please log into your acount in order to comment the ad.")
+                @Html.Partial("_UnauthorizedUserPartial", "Please login into your account in order to comment the ad.")
             }
 
             <div id="Comments">

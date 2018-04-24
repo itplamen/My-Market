@@ -5,6 +5,7 @@
     using Bytes2you.Validation;
 
     using Contracts;
+    using MyMarket.Common;
     using MyMarket.Data.Common;
     using MyMarket.Data.Models;
     
@@ -32,6 +33,21 @@
         public IQueryable<Comment> All()
         {
             return this.commentsRepository.All();
+        }
+
+        public Comment Delete(int id)
+        {
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.INVALID_ID).Throw();
+
+            Comment commentToDelete = this.commentsRepository.GetById(id);
+
+            if (commentToDelete != null)
+            {
+                this.commentsRepository.Delete(commentToDelete);
+                this.commentsRepository.Save();
+            }
+
+            return commentToDelete;
         }
     }
 }
