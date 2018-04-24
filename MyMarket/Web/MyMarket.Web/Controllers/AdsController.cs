@@ -21,7 +21,6 @@
     using Models.Category;
     using Services.Data.Contracts;
     using Services.FileSystem.Contracts;
-    using MyMarket.Web.Models.Comments;
 
     public class AdsController : BaseController
     {
@@ -29,26 +28,22 @@
         private readonly ICategoriesService categoriesService;
         private readonly IFileSystemService fileSystemService;
         private readonly IImagesService imagesService;
-        private readonly ICommentsService commentsService;
 
         public AdsController(
             IAdsService adsService,
             ICategoriesService categoriesService,
             IFileSystemService fileSystemService,
-            IImagesService imagesService,
-            ICommentsService commentsService)
+            IImagesService imagesService)
         {
             Guard.WhenArgument(adsService, nameof(adsService)).IsNull().Throw();
             Guard.WhenArgument(categoriesService, nameof(categoriesService)).IsNull().Throw();
             Guard.WhenArgument(fileSystemService, nameof(fileSystemService)).IsNull().Throw();
             Guard.WhenArgument(imagesService, nameof(imagesService)).IsNull().Throw();
-            Guard.WhenArgument(commentsService, nameof(commentsService)).IsNull().Throw();
 
             this.adsService = adsService;
             this.categoriesService = categoriesService;
             this.fileSystemService = fileSystemService;
             this.imagesService = imagesService;
-            this.commentsService = commentsService;
         }
 
         [HttpGet]
@@ -125,34 +120,6 @@
             Guard.WhenArgument(actualPage, nameof(actualPage)).IsLessThan(NativeConstants.ADS_START_PAGE).Throw();
 
             return this.Search(searchModel, actualPage);
-        }
-
-        [HttpPost]
-        [AjaxOnly]
-        public PartialViewResult AddComment(string content, int adId)
-        {
-            var comment = new Comment()
-            {
-                Content = content,
-                AdId = adId,
-                UserId = this.User.Identity.GetUserId()
-            };
-
-            this.commentsService.Add(comment);
-
-            var viewModel = Mapper.Map<CommentViewModel>(comment);
-            viewModel.Username = this.User.Identity.Name;
-
-            return this.PartialView("_CommentPartial", viewModel);
-        }
-
-        [HttpPost]
-        [AjaxOnly]
-        public PartialViewResult DeleteComment(int id)
-        {
-            this.commentsService.Delete(id);
-
-            return this.PartialView("_CommentPartial", new CommentViewModel());
         }
 
         private PartialViewResult Search(AdsSearchViewModel search, int page)
