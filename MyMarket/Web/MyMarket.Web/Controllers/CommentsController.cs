@@ -46,16 +46,33 @@ namespace MyMarket.Web.Controllers
 
         [HttpPost]
         [AjaxOnly]
-        public HttpStatusCodeResult Delete(int id)
+        public HttpStatusCode Update(int id, string content)
+        {
+            Comment comment = this.commentsService.Get(id);
+
+            if (comment != null)
+            {
+                comment.Content = content;
+                this.commentsService.Update(id, comment);
+
+                return HttpStatusCode.OK;
+            }
+
+            return HttpStatusCode.NotFound;
+        }
+
+        [HttpPost]
+        [AjaxOnly]
+        public HttpStatusCode Delete(int id)
         {
             Comment comment = this.commentsService.Delete(id);
 
             if (comment.IsDeleted)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.OK);
+                return HttpStatusCode.OK;
             }
 
-            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            return HttpStatusCode.NotFound;
         }
     }
 }

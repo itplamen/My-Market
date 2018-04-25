@@ -30,9 +30,36 @@
             return comment.Id;
         }
 
+        public Comment Get(int id)
+        {
+            return this.commentsRepository.GetById(id);
+        }
+
         public IQueryable<Comment> All()
         {
             return this.commentsRepository.All();
+        }
+
+        public Comment Update(int id, Comment comment)
+        {
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.INVALID_ID).Throw();
+            Guard.WhenArgument(comment, nameof(comment)).IsNull().Throw();
+
+            Comment commentToUpdate = this.commentsRepository.GetById(id);
+
+            if (commentToUpdate != null)
+            {
+                commentToUpdate.AdId = comment.AdId;
+                commentToUpdate.Content = comment.Content;
+                commentToUpdate.UserId = comment.UserId;
+                commentToUpdate.CreatedOn = comment.CreatedOn;
+                commentToUpdate.IsDeleted = comment.IsDeleted;
+                commentToUpdate.DeletedOn = comment.DeletedOn;
+
+                this.commentsRepository.Save();
+            }
+
+            return commentToUpdate;
         }
 
         public Comment Delete(int id)

@@ -69,7 +69,28 @@
     </div>
 </div>
 
-<div class="modal fade" id="ModalConfirmation" role="dialog">
+<div class="modal fade" id="EditCommentModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="CommentContent" class="col-form-label">Comment:</label>
+                    <textarea class="form-control" id="CommentContent"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="UpdateCommentBtn" class="btn btn-primary" data-dismiss="modal">Update</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="DeleteCommentModal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -85,19 +106,51 @@
             </div>
         </div>
     </div>
-    <input type="hidden" id="CommentId" value="" />
 </div>
 
+<input type="hidden" id="CommentId" />
+
 @section Scripts {
-    <script>
+<script>
         function onAjaxRequestComplete() {
             $('#PostComment').val('');
         }
 
+        $('#Comments').on('click', '.glyphicon-edit', function () {
+            var id = $(this).attr('data-id');
+            var content = $(this).attr('data-content');
+
+            $('#CommentId').val(id);
+            $('#CommentContent').val(content);
+            $('#EditCommentModal').modal();
+        });
+
         $('#Comments').on('click', '.glyphicon-remove-circle', function () {
             var id = $(this).attr('data-id');
+
             $('#CommentId').val(id);
-            $('#ModalConfirmation').modal();
+            $('#DeleteCommentModal').modal();
+        });
+
+        $('#UpdateCommentBtn').on('click', function () {
+            var id = $('#CommentId').val();
+            var content = $('#CommentContent').val();
+
+            $.ajax({
+                type: 'POST',
+                url: '@(Url.Action("Update", "Comments"))',
+                data: {
+                    id: id,
+                    content: content
+                },
+                success: function (response) {
+                    $('#Comment-' + id + ' .comment-content').html(content);
+                },
+                error: function (response) {
+                    alert('Unable to update comment');
+                    console.log(response);
+                }
+            });
         });
 
         $('#DeleteCommentBtn').on('click', function () {
@@ -116,5 +169,5 @@
                 }
             });
         });
-    </script>
+</script>
 }
