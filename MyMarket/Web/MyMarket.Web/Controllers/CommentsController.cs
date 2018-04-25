@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Net;
+using System.Web.Mvc;
 
 using AutoMapper;
 
@@ -45,11 +46,16 @@ namespace MyMarket.Web.Controllers
 
         [HttpPost]
         [AjaxOnly]
-        public PartialViewResult Delete(int id)
+        public HttpStatusCodeResult Delete(int id)
         {
-            this.commentsService.Delete(id);
+            Comment comment = this.commentsService.Delete(id);
 
-            return this.PartialView("_CommentPartial", new CommentViewModel());
+            if (comment.IsDeleted)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
     }
 }

@@ -10,21 +10,15 @@
     @if (Model.Username == this.User.Identity.Name)
     {
         <span class="eidt-delete-comment">
-            <a data-ajax="true"
-                   data-ajax-method="POST"
-                   data-ajax-mode="replace"
-                   data-ajax-update="#Comments"
-                   href="/Comments/Edit?id=@Model.Id">
-                    <span class="glyphicon glyphicon-edit edit-comment" title="Edit"></span>
-                </a>
-
-            <a data-ajax="true"
+            @*<a data-ajax="true"
                data-ajax-method="POST"
-               data-ajax-mode="InsertAfter"
-               data-ajax-update="#Comment-@Model.Id"
+               data-ajax-mode="replace"
+               data-ajax-update="#Comments"
                href="/Comments/Delete?id=@Model.Id">
-                <span class="glyphicon glyphicon-remove-circle" title="Delete"></span>
-            </a>
+                <span class="glyphicon glyphicon-edit edit-comment" title="Update" data-toggle="modal" data-target="#myModal"></span>*@
+            @*</a>*@
+
+            <span class="glyphicon glyphicon-remove-circle" title="Delete" data-id="@Model.Id"></span>
         </span>
     }
 
