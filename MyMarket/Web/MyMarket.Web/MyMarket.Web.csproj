@@ -236,6 +236,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
+    <Compile Include="Areas\Users\Controllers\ProfileController.cs" />
+    <Compile Include="Areas\Users\UsersAreaRegistration.cs" />
     <Compile Include="Attributes\AjaxOnlyAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdsController.cs" />
@@ -280,6 +282,9 @@
     </Content>
     <Content Include="Areas\Administration\Views\web.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Areas\Users\Views\Profile\Index.cshtml" />
+    <Content Include="Areas\Users\Views\Web.config" />
+    <Content Include="Areas\Users\Views\_ViewStart.cshtml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
@@ -340,6 +345,7 @@
     <Folder Include="Areas\Administration\Controllers\" />
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
+    <Folder Include="Areas\Users\Models\Profile\" />
     <Folder Include="Content\Images\Posts\" />
   </ItemGroup>
   <ItemGroup>
