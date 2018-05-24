@@ -187,7 +187,7 @@
     padding-right: 5px;
 }
 
-.panel-default {
+.account-panel {
     width: 200px;
     text-align: center;
     cursor: pointer;
@@ -195,6 +195,6 @@
     margin-left: 20px;
 }
 
-.panel-default:hover {
-    box-shadow: 0 4px 28px 10px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
+    .account-panel:hover {
+        box-shadow: 0 4px 28px 10px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
