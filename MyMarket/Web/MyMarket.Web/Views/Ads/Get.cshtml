@@ -24,6 +24,7 @@
             <img src="@Url.Content(NativeConstants.IMAGES_PATH + Path.GetFileName(Model.UrlPath))" alt="Ad Image" />
         </div>
         <div class="col-md-9">
+            <p class="published-ad">Price: <span>@Model.Price</span></p>
             <div class="ad-description">@Html.Raw(Model.Description)</div>
             <p class="published-ad">Published on: @Model.CreatedOn.ToString("dd/MMMM/yyyy", CultureInfo.InvariantCulture)</p>
         </div>

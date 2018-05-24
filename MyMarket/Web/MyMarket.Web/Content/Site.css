@@ -145,12 +145,17 @@
 
 .published-ad {
     font-weight: bold;
+  
+    margin-left: 20px;
 }
+
+    .published-ad span {
+        font-size: 20px;
+    }
 
 .comment-title {
     font-weight: bold;
     font-size: 15px;
-    
 }
 
 .comment-date {
